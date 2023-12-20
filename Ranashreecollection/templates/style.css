@@ -1,0 +1,350 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+header li, a{
+    text-decoration: none;
+    color: gray;
+}
+
+header .navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: whitesmoke;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    cursor: pointer;
+}
+.navbar ul li, a{
+    list-style: none;
+    display: inline-block;
+    margin: 7px 0px;
+    margin-left: 20px;
+    padding: 3px;
+}
+.navbar a:hover, .logo, .navbar a:active{
+    color: #DA0037;
+}
+
+.header-logo{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+
+.dropdown {         /* Drop-down container */
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    /* min-width: 160px; */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-left: 20px;
+}
+
+.dropdown-content a {
+    padding: 0px 20px 0px 0px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.basket, .user-logo{
+    height: 30px;
+    width: 30px;
+}
+    /* ### Search ### */
+.search {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 60px;
+    transition: 0.5s;
+    box-shadow: 0 0 0 3px gray;
+    overflow: hidden;
+}
+
+.search.active {
+    width: 200px; /* Adjusted width */
+}
+
+.search.active .input {
+    width: 200px;
+}
+
+.search .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background-color: whitesmoke;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.search .icon::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 3px solid red;
+    border-radius: 50px;
+    transform: translate(-2px, -2px);
+}
+
+.search .icon::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 9px;
+    background: red;
+    transform: translate(5px, 5px) rotate(315deg);
+}
+
+.search .input {
+    position: absolute;
+    width: 100%; /* Adjusted width */
+    height: 30px;
+    left: 0; /* Adjusted left value */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: width 0.5s;
+}
+
+.search .input input {
+    position: absolute;
+    top: 0;
+    width: calc(100% - 20px);   /* Adjusted width */
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 10px 25px 10px 25px;   /* Adjusted padding */
+}
+
+.clear {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    right: 11px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clear::before,
+.clear::after {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 16px;
+    background: #DA0037;
+}
+
+.clear::before {
+    transform: rotate(45deg);
+}
+
+.clear::after {
+    transform: rotate(315deg);
+}
+
+/* ### shop ko logo ### */
+.logo{
+    font-size: 30px;
+    font-weight: 600;
+    font-family: chalkduster;
+}
+
+header input{
+    border-radius: 14px;
+    border: 2px solid gray;
+    color: red;
+    font-size: 15px;
+    padding: 3px 3px 3px 12px;
+}
+
+section{
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+        /* ###  HOME ###*/
+.profile-img{
+    position: relative;
+    padding-top: 70px;
+    width: 80vh;
+    height: 90vh;
+    margin-left: 400px;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+.text1{
+    position: absolute;
+    margin: -5em 0px 40px 150px;
+    /* margin: 0px 0px 30px 150px; */
+    font-family: Montserrat;
+    font-size: 4em;
+    font-weight: 800;
+    line-height: 1em;
+    letter-spacing: -0.02em;
+    text-transform: capitalize;
+    color: black;
+} 
+.text2{
+    position: absolute;
+    margin: -9em 0px 30px 150px; 
+    font-size: 23px;
+    font-weight: 500;
+    color: grey;
+    width: 600px;
+}
+
+.btn{
+    position: absolute;
+    margin: -4em 0px 0px 150px;
+    /* margin: -6em 0px 0px 150px; */
+    display: inline;
+    padding: 10px 25px;
+    background-color: #DA0037;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btn:hover{
+    border: 2px solid #DA0037;
+    background-color: transparent;
+    color: #DA0037;
+}
+.nari-text{
+    /* position: absolute; */
+    /* margin: -5em 0px 0px 155px; */
+    margin: -40px 0px 0px 155px;
+}
+
+/* Slider CSS */
+  .slide {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+  }
+  
+  .slide.active {
+    display: block;
+  }
+
+  .blk{
+    display: inline-block;
+  }
+  
+  .prev-btn{
+    right: 30px;
+  }
+  .next-btn{
+    left: 30px;
+  }
+
+  .prev-btn, 
+  .next-btn{
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    position: absolute;
+  }
+  .prev-btn:hover, 
+  .next-btn:hover{
+    opacity: 1;
+  }
+
+.dis{
+    height: 50vh;
+    width: 100%;
+    background-color: rgba(0,0,0,0.2);
+    margin-bottom: 50px;
+}
+
+
+
+
+
+        /* Footer */
+#footer{
+    background-color: rgba(0,0,0,0.2);
+    width: 100%;
+    height: 45vh;
+    color: #DA0037;
+    font-size: 18px;
+    font-weight: 800px;
+}
+.footer-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo2{
+    font-size: 30px;
+    font-weight: 600;
+    font-family: chalkduster;
+    color: #DA0037;
+}
+.useful a{
+    color: #DA0037;
+}
+.copy{
+    margin-top: 50px;
+}
+
+        
