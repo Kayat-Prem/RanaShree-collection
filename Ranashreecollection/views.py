@@ -1,7 +1,7 @@
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
 
-def AboutUs(request):
-    return HttpResponse("Khima Collection")
+# def AboutUs(request):
+#     return HttpResponse("Ranashree Collection")
 
-def aboutus(request, write):
-    return HttpResponse(write)
+
