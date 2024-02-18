@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
+    <title>Ranashree Sari Collection</title>
 
     <link
       rel="stylesheet"
@@ -16,11 +16,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
-    <style>
-      .mySlides {
-        display: none;
-      }
-    </style>
+  
   </head>
 
   <body>
@@ -39,24 +35,20 @@
               <ul>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="#client">Client</a></li>
-                <li><a href="#faq">FQA</a></li>
+                <li><a href="faq.html">FAQ</a></li>
                 <li><a href="policy.html">Policy</a></li>
+                <li><a href="products.html">Products</a></li>
               </ul>
             </div>
           </div>
 
-          <li><a href="products.html">Products</a></li>
+          <li><a href="#testimonial">Testimonial</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
 
         <div class="header-logo">
           <div>
-            <img
-            src={% static 'home/images/icons/user-profile.png'%}
-              class="user-logo"
-              alt="user"
-            />
+            <a href="login.html"><img src={% static 'home/images/icons/user-profile.png'%} class="user-logo" alt="user"/></a>
           </div>
           <div>
             <img src={% static "home/images/icons/basket.png"%} class="basket" alt="Cart"/>
@@ -92,14 +84,10 @@
               Indulge in elegance. Embrace tradition. Experience Ranashree
               Collection.
             </p>
-            <p class="btn">Shop Now</p>
+            <a href="login.html"><p class="btn">Shop Now</p></a>
           </div>
           <div class="blk">
-            <img
-              src={% static "home/images/saris/sari9.jpg"%}
-              class="profile-img"
-              id="profile-img"
-              alt="Profile" 
+            <img src={% static "home/images/saris/sari9.jpg"%} class="profile-img" id="profile-img" alt="Profile" 
             />
           </div>
         </div>
@@ -114,7 +102,7 @@
               Indulge in elegance. Embrace tradition. Experience Ranashree
               Collection.
             </p>
-            <p class="btn">Shop Now</p>
+            <a href="login.html"><p class="btn">Shop Now</p></a>
           </div>
           <div class="blk">
             <img
@@ -129,7 +117,9 @@
         <img src={% static "home/images/icons/next.png"%} class="prev-btn"/>
         <img src={% static "home/images/icons/back.png"%} class="next-btn"/>
       </div>
+      
     </section>
+    <br><br><br>
     <div class="dis">
       <img src={% static "home/images/saris/sari12.jpg"%} alt="sari"/>
       <div>
@@ -139,15 +129,13 @@
           confidence for every special occasion. Elevate your style, celebrate
           your culture, and embrace the allure of our stunning sari collection.
           Welcome to a journey where every drape tells a story of sophistication
-          and charm.</p2
-        >
-        <div class="dis-btn">
-          <!-- Shop Now -->
-          <a href="#" class="btn">Shop Now</a>
+          and charm.</p2>
+        <div>
+          <a href="login.html"><p class="dis-btn">Shop Now</p></a>
         </div>
       </div>
     </div>
-    <br /><br /><br />
+    
     <h2 class="heads">Feature Products</h2>
 
     <div class="lan-products">
@@ -332,15 +320,17 @@
       <a href="#" class="lan-text3">View All Products</a>
     </div>
 
-    <div class="lan-analysis">
+    <h2 class="heads">Nepalese Sari: Buy Wide range of Nepalese Sari</h2>
+    <div class="short-disc">
+      <p class="short-dis">In a world where trends come and go, there's something timeless about the allure of a saree. It's not just a piece of clothing; it's a canvas that tells stories of tradition, craftsmanship, and the rich cultural tapestry. Welcome to the enchanting realm of Ranashree Collection, where each saree is more than just fabric – it's a celebration of artistry, elegance, and the spirit of womanhood. </p>
+    </div>
+
+
+    <!-- <div class="lan-analysis">
       <h2 class="heads">Analysis on Sari Collection Ecommerce</h2>
       <img src={% static "home/images/linegraph.png"%}/>
       <img src={% static "home/images/piechart.png"%}/>
-    </div>
-
-    <div class="client-views" id="client">
-      <h2 class="heads">Customers Views on the product</h2>
-    </div>
+    </div> -->
 
       <!-- Frequently Asked Questions -->
       <h2 class="heads" id="faq">Frequently Asked Questions</h2>
@@ -377,39 +367,47 @@
 
       </div>
     
+      <div class="client-views" id="testimonial">
+        <h2 class="heads">Testimonials</h2>
+      </div>
+
 
     <footer id="footer" role="contentinfo">
       <div class="footer-wrapper">
-        <div>
-          <a class="logo2" href="#logo">Ranashree.</a>
-          <p><img class="footer-icon" src={% static "home/images/icons/call.png"%}/> +977 9873748380</p>
-          <p><img class="footer-icon" src={% static "home/images/icons/gmail.png"%}/> ranashree@gmail.com</p>
-          <p><img class="footer-icon" src={% static "home/images/icons/location.png"%}/> Chakrapath, Kathmandu, Nepal</p>
+        <div class="con-container">
+          <p class="logo2">Ranashree.</p>
+          <p class="footer-bio">Ranashree Sari Collection offers a curated selection of exquisite saris, blending traditional craftsmanship with contemporary elegance. Embrace the grace of Ranashree – where every sari tells a story of heritage and sophistication.</p><br>
+          
+          <p style="font-size: 25px;">Contact</p><br>
+          <p class="con"><img class="footer-icon1" src={% static "home/images/icons/call.png"%}/> +977 9873748380</p>
+          <p class="con"><img class="footer-icon1" src={% static "home/images/icons/gmail.png"%}/> ranashree@gmail.com</p>
+          <p class="con"><img class="footer-icon1" src={% static "home/images/icons/location.png"%}/> Chakrapath, Kathmandu, Nepal</p>
         </div>
 
         <div class="useful">
-          <p>Useful Links</p>
+          <p style="font-size: 25px;">Useful Links</p><br>
           <p><a href="#home">Home</a></p>
           <p><a href="about.html">About</a></p>
           <p><a href="blog.html">Blog</a></p>
-          <p><a href="contact.html">Contact</a></p>
-          <p><a href="products.html">Products</a></p>
-          <p><a href="#client">Client</a></p>
           <p><a href="#faq">FAQ</a></p>
-          <p><a href="policy.html">Privacy Policy</a></p>
+          <p><a href="products.html">Products</a></p>
+          <p><a href="#testimonial">Testimonial</a></p>
+          <p><a href="contact.html">Contact Us</a></p>
+          <p><a href="policy.html">R&E Policy</a></p>
         </div>
 
         <div class="social">
-          <p>Follow Us</p>
-          <p> <a href="www.facebook.com"> <img class="footer-icon" src={% static "home/images/icons/facebook.png"%}/> </a> </p>
-          <p> <a href="www.instagram.com"> <img class="footer-icon" src={% static "home/images/icons/instagram.png"%}/> </a> </p>
-          <p> <a href="www.youtube.com"> <img class="footer-icon" src={% static "home/images/icons/youtube.png"%}/> </a> </p>
-          <p> <a href="www.tiktok.com"> <img class="footer-icon" src={% static "home/images/icons/tik-tok.png"%}/> </a> </p>
+          <p style="font-size: 25px;">Connect with us</p>
+        <a href="www.facebook.com"><img class="footer-icon" src={% static "home/images/icons/facebook.png"%}/></a>
+        <a href="www.instagram.com"><img class="footer-icon" src={% static "home/images/icons/instagram.png"%}/></a> 
+        <a href="www.youtube.com"><img class="footer-icon" src={% static "home/images/icons/youtube.png"%}/></a>
+        <a href="www.tiktok.com"><img class="footer-icon" src={% static "home/images/icons/tik-tok.png"%}/></a>
 
-          <p>Payment Methods<br>
-            <img class="footer-icon" src={% static "home/images/icons/esewa.png"%}/> 
-          </p><br><br>
-          <p>Happy Shopping</p>
+          <p><p style="font-size: 25px;">Payment Methods</p>
+            <img class="footer-icon3" src={% static "home/images/icons/esewa.webp"%}/> 
+          </p>
+          <p style="font-size: 25px;">Happy Shopping</p>
+
         </div>
       </div>
 
@@ -424,7 +422,7 @@
         </script>
         All rights reserved | Ranashree Collection
       </center>
-    </p>
+    </p><br>
 
     <script src={% static "script.js"%}></script>
   </body>

@@ -19,3 +19,21 @@ def Blog(request):
 
 def Contact(request):
     return render(request, "contact.html")
+
+def Policy(request):
+    return render(request, "policy.html")
+
+def Signin(request):
+    return render(request, "signin.html")
+
+def Login(request):
+    return render(request, "login.html")
+
+def faq(request):
+    return render(request, "faq.html")
+
+def Products(request):
+    return render(request, "products.html")
+
+def Signup(request):
+    return render(request, "signup.html")

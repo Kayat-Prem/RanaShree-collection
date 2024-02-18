@@ -62,43 +62,31 @@ function handleSearchInput() {
 const slides = document.querySelectorAll('.slide');
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
-
 let currentSlide = 0;
 
 function showSlide(slideIndex) {
-    slides.forEach((slide, index) => {
-        slide.classList.remove('active');
-    });
+    slides.forEach(s => s.classList.remove('active'));
     slides[slideIndex].classList.add('active');
     currentSlide = slideIndex;
 }
 
 function showNextSlide() {
-    if (currentSlide === slides.length - 1) {
-        showSlide(0);
-    } else {
-        showSlide(currentSlide + 1);
-    }
+    showSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
 }
 
 function showPreviousSlide() {
-    if (currentSlide === 0) {
-        showSlide(slides.length - 1);
-    } else {
-        showSlide(currentSlide - 1);
-    }
+    showSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
 }
 
 prevBtn.addEventListener('click', showPreviousSlide);
 nextBtn.addEventListener('click', showNextSlide);
 
-// Automatic slideshow
 function startSlideshow() {
     showNextSlide();
-    setTimeout(startSlideshow, 5000); // Adjust the delay as needed
+    setTimeout(startSlideshow, 4000); // Adjust the delay as needed
 }
-
 startSlideshow();
+
 
 //### Landing Products ###
 const buyBtns = document.getElementsByClassName('buy_btn');
@@ -111,10 +99,10 @@ const lan_img=document.getElementsByClassName("lan-img");
 for (let i = 0; i < lan_images.length; i++) {
     lan_images[i].addEventListener("mouseover", (e) => {
         buyBtns[i].style.visibility = 'visible';
-        lan_text[i].style.filter = 'blur(5px)';
-        lan_text2[i].style.filter = 'blur(5px)';
-        lan_img[i].style.filter = 'blur(5px)';
-        lan_price[i].style.filter = 'blur(5px)';
+        lan_text[i].style.filter = 'blur(1px)';
+        lan_text2[i].style.filter = 'blur(1px)';
+        lan_img[i].style.filter = 'blur(1px)';
+        lan_price[i].style.filter = 'blur(1px)';
 
     });
 

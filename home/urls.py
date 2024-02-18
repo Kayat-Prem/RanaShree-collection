@@ -19,10 +19,14 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-
     path("", views.LandingPage),
     path("about.html/", views.AboutUs),
     path("blog.html/", views.Blog),
     path("contact.html/", views.Contact),
-    # path("",include("templates.urls")),
-]
+    path("policy.html/", views.Policy),
+    path("login.html/", views.Login),
+    path("signin.html/", views.Signin),
+    path("faq.html/", views.faq),
+    path("products.html/", views.Products),
+    path("login.html/signup.html/", views.Signup),
+] 
