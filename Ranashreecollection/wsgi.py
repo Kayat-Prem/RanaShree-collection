@@ -1,5 +1,5 @@
 """
-WSGI config for Khimacollection project.
+WSGI config for Ranashreecollection project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Khimacollection.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Ranashreecollection.settings")
 
 application = get_wsgi_application()
