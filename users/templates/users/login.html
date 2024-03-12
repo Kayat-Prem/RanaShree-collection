@@ -14,6 +14,8 @@
     <!-- Script for Google Api -->
     <script src="https://accounts.google.com/gsi/client" async></script>
 
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+
 </head>
 
 <body>
@@ -70,10 +72,17 @@
                     <label for="password">
                         <div class="field-gap">Password:</div>
                         <div class="text-icon">
-                            <div><img class="icon" src="{% static 'home/images/icons/padlock.png' %}" alt="key-icon" />
+                            <div><img class="icon" src="{% static 'home/images/icons/padlock.png' %}" alt="key-icon"/>
                             </div>
-                            <div><input type="password" id="password" name="pass1" autocomplete="off"
-                                    placeholder="Enter your password" required></div>
+                            <div>
+                                <input type="password" id="password" name="pass1" autocomplete="off"
+                                    placeholder="Enter your password" required>
+                                    
+                                <button type="button" id="eye-btn" class="toggle-password" onclick="togglePasswordVisibility()" style="position: relative; left: -45px; top:6px; background-color: transparent; border: none;">
+                                <img class="eye" src="{% static 'home/images/icons/seen1.png' %}" alt="eye-icon" style="height:30px; width: auto;">
+                                </button>
+                                    
+                            </div>
                         </div>
                     </label>
                 </div>
@@ -88,6 +97,20 @@
         </form>
     </div>
     <script src="script.js"></script>
+    
+    <script>            ///### For Seen Password and Unseen Password (eye) ###
+            function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var toggleButton = document.querySelector(".toggle-password img.eye");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleButton.src = "{% static 'home/images/icons/seen1.png' %}"; // Path to unseen eye icon
+        } else {
+            passwordInput.type = "password";
+            toggleButton.src = "{% static 'home/images/icons/seen2.png' %}"; // Path to seen eye icon
+        }
+    }
+    </script>
 </body>
 
 </html>
