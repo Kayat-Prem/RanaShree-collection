@@ -6,19 +6,7 @@ from . import views
 from django.contrib.auth import views as auth
 
 urlpatterns = [
-
-    path("AdminDashboard/", views.AdminDashboard),
-    path("about/", views.AboutUs),
-    path("blog/", views.Blog),
-    path("contact/", views.Contact),
-    path("RefundPolicy/", views.RefundPolicy),
-    path("PrivacyPolicy/", views.PrivacyPolicy),
-    path("faq/", views.faq),
-    path("products/", views.Products),
-    path("login/", views.Login, name ='login'),
-    # path('logout', auth.LogoutView.as_view(template_name ='index.html'), name ='logout'),
-    path("signup/", views.Signup, name='signup'),
-    path('verify/<str:token>/',views.VerifyEmail,name='verify_email'),
-    path('forgot-password/',views.ForgotPassword,name='forgot_password'),
-    path('reset-password/<str:token>/',views.ResetPassword,name='reset_password'),
+    path("adminn/", views.Adminn, name ='adminn'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('logout/', views.logout, name='logout'),
 ] 

@@ -10,9 +10,70 @@
 
     <link rel="stylesheet" href="{% static 'home/all.css' %}">
 
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'home/section.css' %}">
+
 </head>
 <body>
-    
+    <header id="header">
+        <nav class="navbar">
+          <a class="logo" href="#logo">Ranashree.</a>
+          <ul>
+            <li><a href="#" class="active">Home</a></li>
+  
+            <!--### The dropdown container ###-->
+            <div class="dropdown">
+              <li>
+                <p class="dropbtn">Pages <i class="fas fa-caret-down"></i></p>
+              </li>
+              <div class="dropdown-content">
+                <ul>
+                  <li><a href="blog">Blog</a></li>
+                  <li><a href="about">About</a></li>
+                  <li><a href="faq">FAQ</a></li>
+                  <li><a href="refund">Refund</a></li>
+                  <li><a href="products">Products</a></li>
+  
+                </ul>
+              </div>
+            </div>
+  
+            <li><a href="#testimonial">Testimonial</a></li>
+            <li><a href="contact">Contact</a></li>
+          </ul>
+  
+          <div class="header-logo">
+  
+            <div class="search">
+              <div class="icon"></div>
+              <div class="input">
+                <input
+                  type="text"
+                  name="input"
+                  id="mysearch"
+                  placeholder="Search"
+                  required
+                  autocomplete="off"
+                  oninput="handleSearchInput()"
+                />
+              </div>
+              <span class="clear" onclick="clearSearch()"></span>
+            </div>
+            
+            <div>
+              <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png'%} class="user-logo" alt="user"/></a>
+            </div>
+  
+            <div>
+              <img src={% static "home/images/icons/basket.png"%} class="basket" alt="Cart"/>
+            </div>
+  
+          </div>
+        </nav>
+      </header>
+
+      
     <div class="form-wrapper">
         <img class="login2-img" src="{% static 'home/images/login2.webp' %}" alt="icon"/>
 

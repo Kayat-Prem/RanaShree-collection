@@ -88,6 +88,7 @@ function startSlideshow() {
 startSlideshow();
 
 
+
 //### Landing Products ###
 const buyBtns = document.getElementsByClassName('buy_btn');
 const lan_images = document.getElementsByClassName("lan-images");
@@ -116,37 +117,30 @@ for (let i = 0; i < lan_images.length; i++) {
     });
 }
 
+    // ### Swiper Slide for Testimonials ###
+    const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+      
+      // Optional: Pause slideshow on mouse hover
+      const swiperContainer = document.querySelector(".mySwiper");
+      swiperContainer.addEventListener("mouseenter", () => {
+        swiper.autoplay.stop();
+      });
+      swiperContainer.addEventListener("mouseleave", () => {
+        swiper.autoplay.start();
+      });
+      
+      
 
-// ### Login, Signup pages ### //
-const loginForm = document.querySelector(".form-cover");
-const SignupForm = document.querySelector(".form-cover");
-
-
-SignupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let email = document.getElementById("email");
-    let username = document.getElementById("username");
-    let fullname = document.getElementById("fullname");
-    let password = document.getElementById("password");
-    let re_password = document.getElementById("password");
-
-    console.log('Username:', username.value);
-    console.log('Fullname:', fullname.value);
-    console.log('Email:', email.value);
-    console.log('Password:', password.value);
-    console.log('Re-Password:', password.value);
-});
-
-loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let username = document.getElementById("username");
-    let password = document.getElementById("password");
-
-    console.log('Username:', username.value);
-    console.log('Password:', password.value);
-});
-
-
-
-
-  
+    

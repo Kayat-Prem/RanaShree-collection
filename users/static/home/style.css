@@ -83,9 +83,15 @@ header .navbar{
     display: block;
 }
 
-.basket, .user-logo{
+.basket{
     height: 30px;
     width: 30px;
+    margin-left: -20px;
+}
+.user-logo{
+    height: 25px;
+    width: auto;
+    margin-left: -26px;
 }
 
     /* ### Search ### */
@@ -97,10 +103,11 @@ header .navbar{
     transition: 0.5s;
     box-shadow: 0 0 0 3px gray;
     overflow: hidden;
+    margin-left: 50px;
 }
 
 .search.active {
-    width: 200px; /* Adjusted width */
+    width: 200px; 
 }
 
 .search.active .input {
@@ -143,9 +150,9 @@ header .navbar{
 
 .search .input {
     position: absolute;
-    width: 100%; /* Adjusted width */
+    width: 100%; 
     height: 30px;
-    left: 0; /* Adjusted left value */
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -281,7 +288,7 @@ section{
     opacity: 0.7;
 }
 
-/* Slider CSS */
+/* Slide2r CSS */
   .slide {
     width: 100%;
     height: 100vh;
@@ -498,7 +505,75 @@ section{
     /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); */
 }
 
-
+.testi-container{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e3e2ed;
+}
+.testimonial{
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    padding: 50px 0;
+    background-color: #fff;
+    overflow: hidden;
+}
+.testimonial .person{
+    height: 170px;
+    width: 170px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.testimonial .slide2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    height: 100%;
+    width: 100%;
+}
+.slide2 p{
+    padding: 0 160px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+}
+.slide2 .quote-icon{
+    font-size: 30px;
+    color: #4070f4;
+}
+.slide2 .details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.details .name{
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+.details .job{
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+}
+.swiper-pagination-bullet-active{
+    background-color: #4070f4;
+}
+@media screen and (max-width:768px) {
+    .slide p{
+        padding: 0 20px;
+    }
+    .nav-btn{
+        display: none;
+    }
+    
+}
 
         /* Footer */
 #footer{
@@ -592,6 +667,7 @@ section{
 
 .copy{
     margin: 20px 0px;
+    background-color: whitesmoke;
 }
 
 .messages {
@@ -624,12 +700,10 @@ section{
     }
 }
 
-/* Red color for error messages */
 .message.error {
     color: #DA0037;
 }
 
-/* Green color for success messages */
 .message.success {
     color: #008000; 
 }

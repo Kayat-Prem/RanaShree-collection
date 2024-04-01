@@ -1,38 +1,82 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Ranashree Collection</title>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
 
-    <style>
-    section{
-        height: 10vh;
-    }
-    </style>
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'home/section.css' %}">
+  
+  </head>
+
+  <body>
     <header id="header">
-        <nav class="navbar">
-            <a class="logo" href="#logo">Ranashree.</a>
-            <ul>
-                <li><a href="#home" class="active">Home</a> </li>
-                <li><a href="about.html">About Us</a> </li>
-                <li><a href="blog.html">Blog</a> </li>
-                <li><a href="contact.html">Contact Us</a> </li>
-            </ul>
+      <nav class="navbar">
+        <a class="logo" href="#logo">Ranashree.</a>
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
 
-            <div class="search">
-                <div class="icon"></div>
-                <div class="input">
-                    <input type="text" name="input" id="mysearch" placeholder="Search" oninput="handleSearchInput()">
-                </div>
-                <span class="clear" onclick="clearSearch()"></span>
+          <!--### The dropdown container ###-->
+          <div class="dropdown">
+            <li>
+              <p class="dropbtn">Pages <i class="fas fa-caret-down"></i></p>
+            </li>
+            <div class="dropdown-content">
+              <ul>
+                <li><a href="blog">Blog</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="faq">FAQ</a></li>
+                <li><a href="refund">Refund</a></li>
+                <li><a href="products">Products</a></li>
+
+              </ul>
             </div>
-            
-        </nav>
+          </div>
+
+          <li><a href="#testimonial">Testimonial</a></li>
+          <li><a href="contact">Contact</a></li>
+        </ul>
+
+        <div class="header-logo">
+
+          <div class="search">
+            <div class="icon"></div>
+            <div class="input">
+              <input
+                type="text"
+                name="input"
+                id="mysearch"
+                placeholder="Search"
+                required
+                autocomplete="off"
+                oninput="handleSearchInput()"
+              />
+            </div>
+            <span class="clear" onclick="clearSearch()"></span>
+          </div>
+          
+          <div>
+            <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png'%} class="user-logo" alt="user"/></a>
+          </div>
+
+          <div>
+            <img src={% static "home/images/icons/basket.png"%} class="basket" alt="Cart"/>
+          </div>
+
+        </div>
+      </nav>
     </header>
 
  
@@ -61,42 +105,56 @@
 
     <footer id="footer" role="contentinfo">
         <div class="footer-wrapper">
-            <div>
-                <a class="logo2" href="#logo">Ranashree.</a>
-                <p>+977 9873748380</p>
-                <p>ranashree@gmail.com</p>
-                <p>Chakrapath, Kathmandu, Nepal</p>
-            </div>
-
-            <div class="useful">
-                <p>Useful Links</p>
-                <p><a href="#home">Home</a></p>
-                <p><a href="about.html" target="blank">About Us</a></p>
-                <p><a href="blog.html" target="blank">Blog</a></p>
-                <p><a href="contact.html" target="blank">Contact Us</a></p>
-            </div>
-
-            <div class="social">
-                <p>Connect Us</p>
-                <!-- <p> <a href="www.facebook.com"></a> </p> -->
-            </div>
-
+          <div class="con-container">
+            <p class="logo2">Ranashree.</p>
+            <p class="footer-bio">Ranashree Sari Collection offers a curated selection of exquisite saris, blending traditional craftsmanship with contemporary elegance. Embrace the grace of Ranashree – where every sari tells a story of heritage and sophistication.</p><br>
             
+            <p style="font-size: 25px;" id="contact">Contact</p><br>
+            <p class="con"><img class="footer-icon1" src={% static "home/images/icons/call.png"%}/> +977 9873748380</p>
+            <p class="con"><img class="footer-icon1" src={% static "home/images/icons/email.png"%}/> ranashree@gmail.com</p>
+            <p class="con"><img class="footer-icon1" src={% static "home/images/icons/location.png"%}/> Chakrapath, Kathmandu, Nepal</p>
+          </div>
+  
+          <div class="useful">
+            <p style="font-size: 25px;">Useful Links</p><br>
+            <p><a href="#home">Home</a></p>
+            <p><a href="about">About</a></p>
+            <p><a href="blog">Blog</a></p>
+            <p><a href="#faq">FAQ</a></p>
+            <p><a href="products">Products</a></p>
+            <p><a href="contact">Contact Us</a></p>
+            <p><a href="RefundPolicy">Return Policy</a></p>
+          </div>
+  
+          <div class="social">
+            <p style="font-size: 25px;">Connect with us</p>
+          <a href="www.facebook.com"><img class="footer-icon" src={% static "home/images/icons/facebook.png"%}/></a>
+          <a href="www.instagram.com"><img class="footer-icon" src={% static "home/images/icons/instagram.png"%}/></a> 
+          <a href="www.youtube.com"><img class="footer-icon" src={% static "home/images/icons/youtube.png"%}/></a>
+          <a href="www.tiktok.com"><img class="footer-icon" src={% static "home/images/icons/tik-tok.png"%}/></a>
+  
+            <p><p style="font-size: 25px;">Payment Methods</p>
+              <img class="footer-icon3" src={% static "home/images/icons/esewa.webp"%}/> 
+            </p>
+            <p style="font-size: 25px;">Happy Shopping</p>
+  
+          </div>
         </div>
-
-        <p class="copy">
-            <center>Copyright &copy;
-            <script>
-              document.write(new Date().getFullYear());
-            </script>
-            All rights reserved | Ranashree Collection</center>
-          </p>
-    </footer>
-    <script src="script.js"></script>
-</body>
-</html>
-
-
-
-
-    
+  
+        
+      </footer>
+  
+      <p class="copy">
+        <center>
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          All rights reserved | Ranashree Collection <a href="PrivacyPolicy"><b>Privacy Policy</b></a>
+        </center>
+      </p><br>
+  
+      <script src={% static "script.js"%}></script>
+    </body>
+  </html>
+  

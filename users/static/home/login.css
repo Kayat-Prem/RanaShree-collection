@@ -129,23 +129,6 @@
     justify-content: center;
     text-align: center;
 }
-.or-divider {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.or-line {
-    flex: 1;
-    height: 1px;
-    background-color: #DA0037;
-}
-
-.or-text {
-    padding: 0 10px;
-    color: #DA0037;
-    font-size: 14px;
-}
 
 .text-field {
     margin: 20px;
@@ -189,7 +172,21 @@
     font-size: 16px;
     gap: 30px;
 }
-
+.eye{
+    width: 20px; 
+    height: 20px; 
+    cursor: pointer; 
+    margin-left: 5px; 
+    opacity: 0.5; 
+    transition: opacity 0.3s ease; 
+}
+.eye:hover {
+    opacity: 1; 
+}
+#eye-btn{
+    height: 20px;
+    width: 20px;
+}
 
 /* ### For Register Account ### */
 .signup{

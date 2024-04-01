@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from google.oauth2 import id_token
 from google.auth.transport import requests
+from django.contrib.auth.decorators import login_required
 
 
 def LandingPage(request):
@@ -27,17 +28,20 @@ def Blog(request):
 def Contact(request):
     return render(request, "users/contact.html")
 
-def RefundPolicy(request):
+def Refund(request):
     return render(request, "users/RefundPolicy.html")
 
 def PrivacyPolicy(request):
-    return render(request, "users/PrivacyPolicy.html")
+    return render(request, "users/refund.html")
 
 def faq(request):
     return render(request, "users/faq.html")
 
 def Products(request):
     return render(request, "users/products.html")
+
+def Testimonial(request):
+    return render(request, "users/testimonial.html")
 
 
 def Signup(request):
@@ -124,29 +128,29 @@ def Signup(request):
 
 
 def Login(request):
-    context={ 'username':''
-
-    }
+    context = {'username': ''}
     if request.method == 'POST':
-        username=request.POST['username']
-        pass1=request.POST['pass1']
+        username = request.POST['username']
+        password = request.POST['pass1']  # Corrected the variable name from pass1 to password
 
-        context={ 'username':username
-
-            }
-
-        user= authenticate(username=username, password=pass1)
+        context = {'username': username}
+        print('chor')
+        user = authenticate(username=username, password=password)
         if user is not None and user.is_verified:  # Check if user is verified
             login(request, user)
-            fullname = user.full_name
-            messages.success(request, "Successfully logged in!")
-            return render(request, 'users/index.html', {'fullname': fullname})
+            if user.is_superuser:  # Check if user is an admin
+                messages.success(request, "Admin login successful!")
+                return redirect('adminn')  # Redirect to admin page
+            else:
+                fullname = user.full_name
+                messages.success(request, "Successfully logged in!")
+                return redirect("index")
         elif user is not None and not user.is_verified:
             messages.error(request, "Your email is not verified yet. Please check your email for verification.")
+            
         else:
             messages.error(request, "Invalid username or password.")
-    return render(request, 'users/login.html',context)
-
+    return render(request, 'users/login.html', context)
 
 
 def VerifyEmail(request, token):
