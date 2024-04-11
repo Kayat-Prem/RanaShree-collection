@@ -22,6 +22,10 @@
 
       <div class="header-logo">
 
+        <div class="admin-dash">
+          <h1><img src="{% static 'home/images/icons/home.png' %}" class="home" alt="home" />Admin Dashboard</h1>
+        </div>
+
         <div class="search">
           <div class="icon"></div>
           <div class="input">
@@ -41,7 +45,7 @@
 
         <div class="profile-dropdown">
           <div onclick="toggle()" class="profile-dropdown-btn">
-            <div class="profile-img" style="background-image: url('{% static "/home/images/people/per2.jpg" %}');">
+            <div class="profile-img" style="background-image: url('{% static " /home/images/people/per2.jpg" %}');">
               <i class="fa-solid fa-circle"></i>
             </div>
 
@@ -101,7 +105,7 @@
   </header>
 
   <!-- After Login, Message ko laagi -->
-  <div style="display:flex;justify-content: center;align-items: center;flex-direction: column;width: 100vw;">
+  <div style="display:flex; justify-content: center; align-items: center; flex-direction: column; width: 100vw;">
     {% if messages %}
     <ul class="messages">
       {% for message in messages %}
@@ -111,11 +115,12 @@
     {% endif %}
   </div>
 
+
   <input type="checkbox" id="check">
-    <label for="check" id="check-label">
-      <i class="fas fa-bars" id="check-btn"></i>
-      <i class="fas fa-times" id="cancel"></i>
-    </label>
+  <label for="check" id="check-label">
+    <i class="fas fa-bars" id="check-btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
 
 
 
@@ -125,43 +130,79 @@
     <ul class="sidebar-nav">
 
       <li><img src="{% static 'home/images/icons/dashboard.png' %}" class="side-icon" alt="dashboard" /><a
-          href="#">Dashboard</a></li>
-      <li><img src="{% static 'home/images/icons/group.png' %}" class="side-icon2" alt="users" /><a href="#">Users</a>
-      </li>
-      <li><img src="{% static 'home/images/icons/product.png' %}" class="side-icon2" alt="product" /><a
-          href="#">Products</a></li>
-      <li><img src="{% static 'home/images/icons/order.png' %}" class="side-icon2" alt="order" /><a href="#">Orders</a>
-      </li>
-      <li><img src="{% static 'home/images/icons/settings.png' %}" class="side-icon2" alt="setting" /><a
-          href="#">Settings</a></li>
+          href="{% url 'adminn' %}">Dashboard</a></li>
 
-      <br><br><br><br>
+      <li><img src="{% static 'home/images/icons/group.png' %}" class="side-icon2" alt="users" /><a
+          href="{% url 'allusers' %}">Users</a>
+      </li>
+
+      <li><img src="{% static 'home/images/icons/product.png' %}" class="side-icon2" alt="product" /><a
+          href="{% url 'allproducts' %}">Products</a></li>
+
+      <li><img src="{% static 'home/images/icons/order.png' %}" class="side-icon2" alt="order" /><a
+          href="{% url 'allorders' %}">Orders</a></li>
+
+      <li><img src="{% static 'home/images/icons/review.png' %}" class="side-icon2" alt="reviews" /><a
+          href="{% url 'settings' %}">Reviews</a></li>
+
+      <li><img src="{% static 'home/images/icons/transaction.png' %}" class="side-icon2" alt="transactions" /><a
+          href="{% url 'settings' %}">Transactions</a></li>
+
+      <li><img src="{% static 'home/images/icons/settings.png' %}" class="side-icon2" alt="setting" /><a
+          href="{% url 'settings' %}">Settings</a></li>
+
+      <br>
       <li><img src="{% static 'home/images/icons/logout.png' %}" class="side-icon2" alt="logout" /><a
           href="{% url 'index' %}">Log Out</a></li>
     </ul>
   </div>
 
-  <div class="content">
-    <h1><img src="{% static 'home/images/icons/home.png' %}" class="home" alt="home" />Admin Dashboard</h1>
+  <div class="total">
+    <div class="total-inside">
+      <div><img src="{% static 'home/images/icons/logout.png' %}" class="side-icon2" alt="logout"/></div>
+        <div><h4>Total sales</h4>
+              <p>Rs. 100k</p>
+      </div>
+    </div>
+
+    <div class="total-inside">
+      <div><img src="{% static 'home/images/icons/logout.png' %}" class="side-icon2" alt="logout"/></div>
+        <div><h4>Total sales</h4>
+              <p>Rs. 100k</p>
+      </div>
+    </div>
+
+    <div class="total-inside">
+      <div><img src="{% static 'home/images/icons/logout.png' %}" class="side-icon2" alt="logout"/></div>
+        <div><h4>Total sales</h4>
+              <p>Rs. 100k</p>
+      </div>
+    </div>
+
+    <div class="total-inside">
+      <div><img src="{% static 'home/images/icons/logout.png' %}" class="side-icon2" alt="logout"/></div>
+        <div><h4>Total sales</h4>
+              <p>Rs. 100k</p>
+      </div>
+    </div>
   </div>
 
 
+  <div class="lan-analysis">
+    <img src={% static "home/images/linegraph.png" %} />
+    <img src={% static "home/images/piechart.png" %} />
+  </div>
 
 
-
-
-
-
-
-  <!-- <p class="copy">
-      <center>
-        Copyright &copy;
-        <script>
-          document.write(new Date().getFullYear());
-        </script>
-        All rights reserved | Ranashree Collection
-      </center>
-    </p><br> -->
+  <p class="copy">
+    <center>
+      Copyright &copy;
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      All rights reserved | Ranashree Collection
+    </center>
+  </p><br>
 
   <script src={% static "AdminDashboard/script.js" %}></script>
 </body>

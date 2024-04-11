@@ -37,6 +37,15 @@ function handleSearchInput() {
 }
 
 // ### Sidebar ###
+document.addEventListener("DOMContentLoaded", function() {
+    const sidebarItems = document.querySelectorAll('.sidebar-nav li');
+
+    sidebarItems.forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelector('.sidebar').style.width = '250px';
+        });
+    });
+});
 
 
 //  ### Edit Profile  ###
@@ -51,6 +60,32 @@ window.addEventListener("click", function (e) {
   if (!btn.contains(e.target)) classList.remove("active");
 });
 
+//  ### Edit and Delete Products ### 
+function editProduct(productId) {
+    // Redirect to edit page with product id
+    window.location.href = `/edit_product/${productId}`;
+  }
+
+  function deleteProduct(productId) {
+    if (confirm('Are you sure you want to delete this product?')) {
+        $.ajax({
+            type: 'POST',
+            url: '/delete_product/' + productId + '/',  // Ensure trailing slash here
+            data: {
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function () {
+                alert('Product deleted successfully!');
+                // Reload the page to reflect the changes
+                window.location.reload();
+            },
+            error: function (xhr, errmsg, err) {
+              console.log(xhr.status + ': ' + xhr.responseText);
+              alert('Error deleting product!');
+            }
+        });
+    }
+}
 
 
   

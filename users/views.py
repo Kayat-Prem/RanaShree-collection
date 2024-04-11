@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from django.contrib.auth.decorators import login_required
+from AdminDashboard.models import productsModel
 
 
 def LandingPage(request):
@@ -38,7 +39,9 @@ def faq(request):
     return render(request, "users/faq.html")
 
 def Products(request):
-    return render(request, "users/products.html")
+    # Fetch all existing products from the database
+    products = productsModel.objects.all()
+    return render(request, "users/products.html",{'products': products})
 
 def Testimonial(request):
     return render(request, "users/testimonial.html")
@@ -284,3 +287,24 @@ def inputcontact(request):
         return redirect('index')  
     
     return render(request, 'users/inputcontact.html')
+
+
+def Allproducts(request):
+    if request.method == 'POST':
+        name = request.POST.get('Sari_Name')
+        description = request.POST.get('Description')
+        image = request.FILES.get('Image')
+        price = request.POST.get('Price')
+        
+        if name and description and image and price:
+            # Save data to the database
+            productsModel.objects.create(Sari_Name=name, Description=description, Image=image, Price=price)
+            messages.success(request, "Successfully Added!")
+            return redirect('allproducts')  # Redirect to the same page after form submission
+        else:
+            messages.error(request, "All fields are required.")
+    
+    # Fetch all existing products from the database
+    products = productsModel.objects.all()
+    
+    return render(request, 'allproducts.html', {'products': products})
