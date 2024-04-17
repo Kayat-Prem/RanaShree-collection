@@ -12,3 +12,4 @@ class CustomUser(AbstractUser):
     def _str_(self):
         return self.username
  
+

@@ -150,7 +150,7 @@
 
   <h2 class="heads">Feature Products</h2>
 
-  <div class="lan-products">
+  <!-- <div class="lan-products">
     <div class="lan-images">
       <div>
         <div class="lan-text">Premium Quality</div>
@@ -358,10 +358,27 @@
       <img src={% static "home/images/saris/sari16.jpg" %} class="lan-img" alt="sari" />
     </div>
 
-  </div>
+  </div> -->
 
-  <div>
+  <!-- <div>
     <a href="{% url 'product' %}" class="lan-text3">View All Products</a>
+  </div> -->
+
+  <div class="lan-products">
+    {% for product in products %}
+    <div class="lan-images">
+      <div>
+        <div class="lan-text">{{ product.Description }}</div>
+        <p class="lan-text2">{{ product.Sari_Name }}</p>
+        <p class="lan-price">{{ product.Price }}</p>
+
+        <a href="individualProducts/{{ product.id }}">
+          <p class="buy_btn">Buy Now</p>
+        </a>
+      </div>
+      <img src="{{ product.Image.url }}" class="lan-img" alt="{{ product.Sari_Name }}">
+    </div>
+    {% endfor %}
   </div>
 
   <h2 class="heads">Nepalese Sari: Buy Wide range of Nepalese Sari</h2>
@@ -372,12 +389,6 @@
       fabric – it's a celebration of artistry, elegance, and the spirit of womanhood. </p>
   </div>
 
-
-  <!-- <div class="lan-analysis">
-      <h2 class="heads">Analysis on Sari Collection Ecommerce</h2>
-      <img src={% static "home/images/linegraph.png"%}/>
-      <img src={% static "home/images/piechart.png"%}/>
-    </div> -->
 
   <!-- Frequently Asked Questions -->
   <h2 class="heads" id="faq">Frequently Asked Questions</h2>
@@ -431,12 +442,12 @@
 
   </div>
 
-  <h2 class="heads">Testimonials</h2>
+  <h2 class="heads">What our Customers Say</h2>
   <section class="testi-container">
     <div class="testimonial swiper-container mySwiper" id="testimonial">
       <div class="testi-content swiper-wrapper">
         <div class="slide2 swiper-slide">
-          <img src={% static "home/images/people/per6.jpg" %} alt="person" class="person" />
+          <img src={% static "home/images/people/per10.png" %} alt="person" class="person" />
           <p>
             Indulge in elegance with stunning Ranashree sari collection. Each piece exudes timeless charm and exquisite craftsmanship, elevating your style to new heights with every drape.
           </p>
@@ -444,8 +455,8 @@
           <i class='bx bxs-quote-alt-left quote-icon'></i>
 
           <div class="details">
-            <span class="name">Shrinkhala Khatiwada</span>
-            <span class="job">Miss Nepal</span>
+            <span class="name">Shristy Bhusal</span>
+            <span class="job">Developer</span>
 
           </div>
 
@@ -496,13 +507,13 @@
 
       <div class="useful">
         <p style="font-size: 25px;">Useful Links</p><br>
-        <p><a href="">Home</a></p>
-        <p><a href="about">About</a></p>
-        <p><a href="blog">Blog</a></p>
+        <p><a href="/">Home</a></p>
+        <p><a href="/about">About</a></p>
+        <p><a href="/blog">Blog</a></p>
         <p><a href="#faq">FAQ</a></p>
-        <p><a href="products">Products</a></p>
-        <p><a href="contact">Contact Us</a></p>
-        <p><a href="RefundPolicy">Return Policy</a></p>
+        <p><a href="/products">Products</a></p>
+        <p><a href="/contact">Contact Us</a></p>
+        <p><a href="/refund">Return Policy</a></p>
       </div>
 
       <div class="social">
@@ -530,7 +541,7 @@
       <script>
         document.write(new Date().getFullYear());
       </script>
-      All rights reserved | Ranashree Collection <a href="PrivacyPolicy"><b>Privacy Policy</b></a>
+      All rights reserved | Ranashree Collection <a href="/PrivacyPolicy"><b>Privacy Policy</b></a>
     </center>
   </p><br>
 
@@ -538,6 +549,12 @@
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+
+  <script src={% static "homeSlider.js" %}></script>
+
+  <script src={% static "testimonial.js" %}></script>
+
+  <script src={% static "product.js" %}></script>
 
   <script src={% static "script.js" %}></script>
 

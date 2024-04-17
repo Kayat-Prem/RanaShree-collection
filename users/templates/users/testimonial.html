@@ -19,7 +19,8 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <!-- Link Swiper's CSS -->
-  <!-- <link rel="stylesheet" href="{% static 'home/swiper-bundle.min.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'home/swiper-bundle.min.css' %}">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 </head>
@@ -29,7 +30,7 @@
     <nav class="navbar">
       <a class="logo" href="#logo">Ranashree.</a>
       <ul>
-        <li><a href="#" class="active">Home</a></li>
+        <li><a href="/" class="active">Home</a></li>
 
         <!--### The dropdown container ###-->
         <div class="dropdown">
@@ -38,18 +39,18 @@
           </li>
           <div class="dropdown-content">
             <ul>
-              <li><a href="blog">Blog</a></li>
-              <li><a href="about">About</a></li>
-              <li><a href="faq">FAQ</a></li>
-              <li><a href="refund">Refund</a></li>
-              <li><a href="products">Products</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/refund">Refund</a></li>
+              <li><a href="/products">Products</a></li>
 
             </ul>
           </div>
         </div>
 
-        <li><a href="#testimonial">Testimonial</a></li>
-        <li><a href="contact">Contact</a></li>
+        <li><a href="/testimonial">Testimonial</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
 
       <div class="header-logo">
@@ -76,13 +77,13 @@
     </nav>
   </header>
 
-
+  <br>
   <h2 class="heads">Testimonials</h2>
   <section class="testi-container">
     <div class="testimonial swiper-container mySwiper">
       <div class="testi-content swiper-wrapper">
         <div class="slide2 swiper-slide">
-          <img src={% static "home/images/people/per6.jpg" %} alt="person" class="person" />
+          <img src={% static "home/images/people/per10.png" %} alt="person" class="person" />
           <p>
             Each sari comes with care instructions, which typically include information on washing, ironing, and
             storing the garment. We recommend following these guidelines to preserve the beauty and quality of your
@@ -93,8 +94,8 @@
           <i class='bx bxs-quote-alt-left quote-icon'></i>
 
           <div class="details">
-            <span class="name">Shrinkhala Khatiwada</span>
-            <span class="job">Miss Nepal</span>
+            <span class="name">Shrisy Bhusal</span>
+            <span class="job">Developer</span>
 
           </div>
 
@@ -140,12 +141,13 @@
     </center>
   </p><br>
 
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src={% static "testimonial.js" %}></script>
 
   <script src={% static "script.js" %}></script>
 
-  <!-- Swiper JS -->
-  <!-- <script src={% static "swiper-bundle.min.js" %}></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 </body>
 

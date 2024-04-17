@@ -4,31 +4,42 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <link rel="stylesheet" href="{% static 'home/dashboard.css' %}" />
 
-    <link rel="stylesheet" href="{% static 'home/adminn.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/dashboard.css' %}" />
+  <style>
+    .header_fixed {
+      max-height: 100vh;
+      width: 110%;
+      overflow: auto;
+      border: 1px solid #dddddd;
+      align-items: center;
+      justify-content: center;
+      margin-left: 8%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="{% static 'home/adminn.css' %}" />
 
 </head>
 
 <body>
-    <div style="display:flex;justify-content: center;align-items: center;flex-direction: column;width: 100vw;">
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li {% if message.tags %} class="message {{ message.tags }}" {% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </div>
+  <div style="display:flex;justify-content: center;align-items: center;flex-direction: column;width: 100vw;">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li {% if message.tags %} class="message {{ message.tags }}" {% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
 
   <header id="header">
     <nav class="navbar">
@@ -119,85 +130,78 @@
 
 
   <input type="checkbox" id="check">
-    <label for="check" id="check-label">
-      <i class="fas fa-bars" id="check-btn"></i>
-      <i class="fas fa-times" id="cancel"></i>
-    </label>
+  <label for="check" id="check-label">
+    <i class="fas fa-bars" id="check-btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
 
 
-    <div class="sidebar">
-        <a class="logo" href="">Ranashree.</a>
-        <ul class="sidebar-nav">
-    
-          <li><img src="{% static 'home/images/icons/dashboard.png' %}" class="side-icon" alt="dashboard"/><a
-              href="{% url 'adminn' %}">Dashboard</a></li>
-    
-          <li><img src="{% static 'home/images/icons/group.png' %}" class="side-icon2" alt="users"/><a href="{% url 'allusers' %}">Users</a>
-          </li>
-    
-          <li><img src="{% static 'home/images/icons/product.png' %}" class="side-icon2" alt="product"/><a
-              href="{% url 'allproducts' %}">Products</a></li>
-    
-          <li><img src="{% static 'home/images/icons/order.png' %}" class="side-icon2" alt="order"/><a href="{% url 'allorders' %}">Orders</a>
-          </li>
-    
-          <li><img src="{% static 'home/images/icons/settings.png' %}" class="side-icon2" alt="setting"/><a
-              href="{% url 'settings' %}">Settings</a></li>
-    
-          <br><br><br><br>
-          <li><img src="{% static 'home/images/icons/logout.png' %}" class="side-icon2" alt="logout"/><a
-              href="{% url 'index' %}">Log Out</a></li>
-        </ul>
-    </div>
+  <div class="sidebar">
+    <a class="logo" href="">Ranashree.</a>
+    <ul class="sidebar-nav">
+
+      <li><img src="{% static 'home/images/icons/dashboard.png' %}" class="side-icon" alt="dashboard" /><a
+          href="{% url 'adminn' %}">Dashboard</a></li>
+
+      <li><img src="{% static 'home/images/icons/group.png' %}" class="side-icon2" alt="users" /><a
+          href="{% url 'allusers' %}">Users</a>
+      </li>
+
+      <li><img src="{% static 'home/images/icons/product.png' %}" class="side-icon2" alt="product" /><a
+          href="{% url 'allproducts' %}">Products</a></li>
+
+      <li><img src="{% static 'home/images/icons/order.png' %}" class="side-icon2" alt="order" /><a
+          href="{% url 'allorders' %}">Orders</a></li>
+
+      <li><img src="{% static 'home/images/icons/review.png' %}" class="side-icon2" alt="reviews" /><a
+          href="{% url 'settings' %}">Reviews</a></li>
+
+      <li><img src="{% static 'home/images/icons/transaction.png' %}" class="side-icon2" alt="transactions" /><a
+          href="{% url 'settings' %}">Transactions</a></li>
+
+      <li><img src="{% static 'home/images/icons/settings.png' %}" class="side-icon2" alt="setting" /><a
+          href="{% url 'settings' %}">Settings</a></li>
+
+      <br>
+      <li><img src="{% static 'home/images/icons/logout.png' %}" class="side-icon2" alt="logout" /><a
+          href="{% url 'index' %}">Log Out</a></li>
+    </ul>
+  </div>
 
 
 
-<section class="section">
+  <section class="section">
     <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="header_fixed">
-          <table>
-            <thead>
-              <tr>
-                <th>S.N.</th>
-                <th>User Name</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Contact</th>
-                <th>Is Verified</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for product in products %}
-              <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ signup.username }}</td>
-                <td>{{ signup.fullname }}</td>
-                <td>{{ signup.email }}</td>
-                <td>{{ signup.contact }}</td>
-                <td><a href="#" onclick="editProduct('{{ product.id }}')" class="action-icon"><i class="fas fa-edit"></i></a>
-                  <a href="#" onclick="deleteProduct('{{ product.id }}')" class="action-icon"><i class="fas fa-trash"></i></a>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+      {% csrf_token %}
+      <div class="header_fixed">
+        <table>
+          <thead>
+            <tr>
+              <th>S.N.</th>
+              <th>User Name</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Contact</th>
+              <th>Is Verified</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.full_name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.contact_number }}</td>
+              <td>{% if user.is_verified %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
     </form>
-</section>
-
-
-
-
-  <p class="copy">
-      <center>
-        Copyright &copy;
-        <script>
-          document.write(new Date().getFullYear());
-        </script>
-        All rights reserved | Ranashree Collection
-      </center>
-    </p><br>
+  </section>
 
 
   <script src={% static "AdminDashboard/script.js" %}></script>
@@ -206,5 +210,3 @@
 </body>
 
 </html>
-
-

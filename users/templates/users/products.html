@@ -12,34 +12,108 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+  <style>
+    .lan-products {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
 
-  <link rel="stylesheet" href="{% static 'home/dashboard.css' %}" />
+    .lan-images {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 250px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      margin: 20px;
+      position: relative;
+      transition: filter 0.3s;
+    }
 
-  <link rel="stylesheet" href="{% static 'home/adminn.css' %}" />
+    .buy_btn {
+      background-color: #DA0037;
+      color: white;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      padding: 10px 15px;
+      position: absolute;
+      bottom: 20px;
+      right: 100px;
+      visibility: hidden;
+      z-index: 1;
+      /* Blur Content bhanda mathi aaounako laagi */
+      transition: filter 0.3s;
+    }
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    .lan-img {
+      width: 150px;
+      height: auto;
+    }
+
+    .lan-text {
+      font-size: 16px;
+    }
+
+    .lan-text2 {
+      font-size: 18px;
+      padding: 15px 0px 10px 0px;
+    }
+
+    .lan-price {
+      margin-top: 25px;
+      font-weight: 600;
+    }
+
+    .lan-text3 {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      font-weight: 700;
+      font-size: 20px;
+    }
+  </style>
+
+<link rel="stylesheet" href="{% static 'home/style.css' %}">
 
 </head>
 
 <body>
-  <div style="display:flex;justify-content: center;align-items: center;flex-direction: column;width: 100vw;">
-    {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-      <li {% if message.tags %} class="message {{ message.tags }}" {% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-  </div>
+
 
   <header id="header">
     <nav class="navbar">
+      <a class="logo" href="">Ranashree.</a>
+      <ul>
+        <li><a href="/" class="active">Home</a></li>
+
+        <!--### The dropdown container ###-->
+        <div class="dropdown">
+          <li>
+            <p class="dropbtn">Pages <i class="fas fa-caret-down"></i></p>
+          </li>
+          <div class="dropdown-content">
+            <ul>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/refund">Refund</a></li>
+              <li><a href="/products">Products</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <li><a href="/testimonial">Testimonial</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
 
       <div class="header-logo">
-
-        <div class="admin-dash">
-          <h1><img src="{% static 'home/images/icons/home.png' %}" class="home" alt="home" />Admin Dashboard</h1>
-        </div>
 
         <div class="search">
           <div class="icon"></div>
@@ -48,71 +122,15 @@
               oninput="handleSearchInput()" />
           </div>
           <span class="clear" onclick="clearSearch()"></span>
+        
+        </div>
+        <div>
+          <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png' %} class="user-logo"
+              alt="user" /></a>
         </div>
 
         <div>
           <img src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
-        </div>
-
-        <div>
-          <img src={% static "home/images/icons/notification.png" %} class="notification" alt="Cart" />
-        </div>
-
-        <div class="profile-dropdown">
-          <div onclick="toggle()" class="profile-dropdown-btn">
-            <div class="profile-img" style="background-image: url('{% static "/home/images/people/per2.jpg" %}');">
-              <i class="fa-solid fa-circle"></i>
-            </div>
-
-            <span> Shree</span>
-            <i class="fa-solid fa-angle-down"></i>
-            </span>
-          </div>
-
-          <ul class="profile-dropdown-list">
-            <li class="profile-dropdown-list-item">
-              <a href="#">
-                <i class="fa-regular fa-user"></i>
-                Edit Profile
-              </a>
-            </li>
-
-            <li class="profile-dropdown-list-item">
-              <a href="#">
-                <i class="fa-regular fa-envelope"></i>
-                Inbox
-              </a>
-            </li>
-
-            <li class="profile-dropdown-list-item">
-              <a href="#">
-                <i class="fa-solid fa-chart-line"></i>
-                Analytics
-              </a>
-            </li>
-
-            <li class="profile-dropdown-list-item">
-              <a href="#">
-                <i class="fa-solid fa-sliders"></i>
-                Settings
-              </a>
-            </li>
-
-            <li class="profile-dropdown-list-item">
-              <a href="#">
-                <i class="fa-regular fa-circle-question"></i>
-                Help & Support
-              </a>
-            </li>
-            <hr />
-
-            <li class="profile-dropdown-list-item">
-              <a href="{% url 'index' %}">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                Log out
-              </a>
-            </li>
-          </ul>
         </div>
 
       </div>
@@ -120,89 +138,83 @@
   </header>
 
 
-  <input type="checkbox" id="check">
-  <label for="check" id="check-label">
-    <i class="fas fa-bars" id="check-btn"></i>
-    <i class="fas fa-times" id="cancel"></i>
-  </label>
+  <br><br><br>
+  <div class="lan-products">
+    {% for product in products %}
+    <div class="lan-images">
+      <div>
+        <div class="lan-text">{{ product.Description }}</div>
+        <p class="lan-text2">{{ product.Sari_Name }}</p>
+        <p class="lan-price">{{ product.Price }}</p>
 
-
-  <div class="sidebar">
-    <a class="logo" href="">Ranashree.</a>
-    <ul class="sidebar-nav">
-
-      <li><img src="{% static 'home/images/icons/dashboard.png' %}" class="side-icon" alt="dashboard" /><a
-          href="{% url 'adminn' %}">Dashboard</a></li>
-
-      <li><img src="{% static 'home/images/icons/group.png' %}" class="side-icon2" alt="users" /><a
-          href="{% url 'allusers' %}">Users</a>
-      </li>
-
-      <li><img src="{% static 'home/images/icons/product.png' %}" class="side-icon2" alt="product" /><a
-          href="{% url 'allproducts' %}">Products</a></li>
-
-      <li><img src="{% static 'home/images/icons/order.png' %}" class="side-icon2" alt="order" /><a
-          href="{% url 'allorders' %}">Orders</a>
-      </li>
-
-      <li><img src="{% static 'home/images/icons/settings.png' %}" class="side-icon2" alt="setting" /><a
-          href="{% url 'settings' %}">Settings</a></li>
-
-      <br><br><br><br>
-      <li><img src="{% static 'home/images/icons/logout.png' %}" class="side-icon2" alt="logout" /><a
-          href="{% url 'index' %}">Log Out</a></li>
-    </ul>
+        <a href="individualProducts/{{ product.id }}">
+          <p class="buy_btn">Buy Now</p>
+        </a>
+      </div>
+      <img src="{{ product.Image.url }}" class="lan-img" alt="{{ product.Sari_Name }}">
+    </div>
+    {% endfor %}
   </div>
 
+  <footer id="footer" role="contentinfo">
+    <div class="footer-wrapper">
+      <div class="con-container">
+        <p class="logo2">Ranashree.</p>
+        <p class="footer-bio">Ranashree Sari Collection offers a curated selection of exquisite saris, blending
+          traditional craftsmanship with contemporary elegance. Embrace the grace of Ranashree – where every sari tells
+          a story of heritage and sophistication.</p><br>
 
+        <p style="font-size: 25px;" id="contact">Contact</p><br>
+        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/call.png" %} /> +977 9873748380</p>
+        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/email.png" %} /> ranashree@gmail.com
+        </p>
+        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/location.png" %} /> Chakrapath,
+          Kathmandu, Nepal</p>
+      </div>
 
-  <section class="section">
-    <div class="header_fixed">
-      <table>
-        <thead>
-          <tr>
-            <th>S.N.</th>
-            <th>Sari Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Images</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for product in products %}
-          <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ product.Sari_Name }}</td>
-            <td>{{ product.Description }}</td>
-            <td>{{ product.Price }}</td>
-            <td><img src="{{ product.Image.url }}" class="backend-image" alt="{{ product.Sari_Name }}"></td>
-            <td><a href="#" onclick="editProduct('{{ product.id }}')" class="action-icon"><i class="fas fa-edit"></i></a>
-              <a href="#" onclick="deleteProduct('{{ product.id }}')" class="action-icon"><i class="fas fa-trash"></i></a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div class="useful">
+        <p style="font-size: 25px;">Useful Links</p><br>
+        <p><a href="">Home</a></p>
+        <p><a href="about">About</a></p>
+        <p><a href="blog">Blog</a></p>
+        <p><a href="#faq">FAQ</a></p>
+        <p><a href="products">Products</a></p>
+        <p><a href="contact">Contact Us</a></p>
+        <p><a href="RefundPolicy">Return Policy</a></p>
+      </div>
+
+      <div class="social">
+        <p style="font-size: 25px;">Connect with us</p>
+        <a href="www.facebook.com"><img class="footer-icon" src={% static "home/images/icons/facebook.png" %} /></a>
+        <a href="www.instagram.com"><img class="footer-icon" src={% static "home/images/icons/instagram.png" %} /></a>
+        <a href="www.youtube.com"><img class="footer-icon" src={% static "home/images/icons/youtube.png" %} /></a>
+        <a href="www.tiktok.com"><img class="footer-icon" src={% static "home/images/icons/tik-tok.png" %} /></a>
+
+        <p>
+        <p style="font-size: 25px;">Payment Methods</p>
+        <img class="footer-icon3" src={% static "home/images/icons/esewa.webp" %} />
+        </p>
+        <p style="font-size: 25px;">Happy Shopping</p>
+
+      </div>
     </div>
-  </section>
 
 
-  <br><br><br>
+  </footer>
+
+
+
   <p class="copy">
-      <center>
-        Copyright &copy;
-        <script>
-          document.write(new Date().getFullYear());
-        </script>
-        All rights reserved | Ranashree Collection
-      </center>
-    </p><br>
+    <center>
+      Copyright &copy;
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      All rights reserved | Ranashree Collection <a href="/PrivacyPolicy"><b>Privacy Policy</b></a>
+    </center>
+  </p><br>
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <script src={% static "AdminDashboard/script.js" %}></script>
+  <script src={% static "product.js" %}></script>
 
 
 </body>

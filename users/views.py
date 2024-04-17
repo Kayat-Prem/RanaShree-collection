@@ -15,13 +15,17 @@ from AdminDashboard.models import productsModel
 
 
 def LandingPage(request):
-    data={
-        'Title': 'Ranashree Collection'
-    }
-    return render(request, 'users/index.html', data)  # data jun chai HTML page maa dekhauna chahancha....
+        products = productsModel.objects.all()
+        return render(request, 'users/index.html', {'products': products})
+
+@login_required(login_url='/login/') 
+def UserPage(request):
+    products = productsModel.objects.all()
+    return render(request, 'user/user.html', {'products': products})
+
 
 def AboutUs(request):
-    return render(request, "users/about.html")
+        return render(request, "users/about.html")
 
 def Blog(request):
     return render(request, "users/blog.html")
@@ -30,18 +34,74 @@ def Contact(request):
     return render(request, "users/contact.html")
 
 def Refund(request):
-    return render(request, "users/RefundPolicy.html")
+    return render(request, "users/refund.html")
 
 def PrivacyPolicy(request):
-    return render(request, "users/refund.html")
+    return render(request, "users/PrivacyPolicy.html")
 
 def faq(request):
     return render(request, "users/faq.html")
 
 def Products(request):
-    # Fetch all existing products from the database
     products = productsModel.objects.all()
     return render(request, "users/products.html",{'products': products})
+
+def individualProducts(request, id):
+    product = productsModel.objects.get(id=id)
+    return render(request, "users/individualProduct.html", {'product': product})
+
+def individualProducts(request, id):
+    try:
+        product = productsModel.objects.get(id=id)
+        print("Product found:", product)  # Debugging statement
+    except productsModel.DoesNotExist:
+        print("Product not found")  # Debugging statement
+    return render(request, "users/individualProduct.html", {'product': product})
+
+def addCart(request):
+    if request.user.is_authenticated:
+        cart_items = Cart.objects.filter(user=request.user)
+    else:
+        cart_items = []
+    return render(request, "users/addCart.html", {'cart_items': cart_items})
+
+
+# views.py
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from AdminDashboard.models import Cart
+from decimal import Decimal
+
+@csrf_exempt
+def add_to_cart(request):
+    if request.method == 'POST':
+        # Extract data from request
+        user = request.user if request.user.is_authenticated else None
+        product_name = request.POST.get('product_name')
+        description = request.POST.get('description')
+        
+        size = request.POST.get('size')
+        image = request.POST.get('image')
+        quantity = int(request.POST.get('quantity', 1)) 
+   
+        price_str = request.POST.get('price')
+        price = Decimal(price_str.replace('Rs. ', '').replace(',', '')) 
+        print(user,product_name,description,'p',price,'s',size,'q',quantity)
+        # Save data to Cart model
+        cart_item = Cart.objects.create(
+            user=user,
+            product_name=product_name,
+            description=description,
+            price=price,
+            size=size,
+            image=image,
+            quantity=quantity
+        )
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False, 'error': 'Only POST requests are allowed.'})
+
+
 
 def Testimonial(request):
     return render(request, "users/testimonial.html")
@@ -147,7 +207,7 @@ def Login(request):
             else:
                 fullname = user.full_name
                 messages.success(request, "Successfully logged in!")
-                return redirect("index")
+                return redirect("user")
         elif user is not None and not user.is_verified:
             messages.error(request, "Your email is not verified yet. Please check your email for verification.")
             
@@ -288,23 +348,3 @@ def inputcontact(request):
     
     return render(request, 'users/inputcontact.html')
 
-
-def Allproducts(request):
-    if request.method == 'POST':
-        name = request.POST.get('Sari_Name')
-        description = request.POST.get('Description')
-        image = request.FILES.get('Image')
-        price = request.POST.get('Price')
-        
-        if name and description and image and price:
-            # Save data to the database
-            productsModel.objects.create(Sari_Name=name, Description=description, Image=image, Price=price)
-            messages.success(request, "Successfully Added!")
-            return redirect('allproducts')  # Redirect to the same page after form submission
-        else:
-            messages.error(request, "All fields are required.")
-    
-    # Fetch all existing products from the database
-    products = productsModel.objects.all()
-    
-    return render(request, 'allproducts.html', {'products': products})

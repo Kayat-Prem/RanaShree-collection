@@ -1,0 +1,64 @@
+<!-- addCart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <style>
+        /* Add your CSS styles for making it beautiful */
+        .cart-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .cart-image {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+        .cart-details {
+            flex: 1;
+        }
+        .cart-details h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <div class="cart-items">
+        {% for item in cart_items %}
+            <div class="cart-container">
+         
+                <img src="{{ item.image.url }}" alt="{{ item.product_name }}" class="cart-image">
+<div class="cart-details">
+                    <h2>{{ item.product_name }}</h2>
+                    <p><strong>Description:</strong> {{ item.description }}</p>
+                    <p><strong>Price:</strong> Rs. {{ item.price }}</p>
+                    <p><strong>Size:</strong> {{ item.size }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all cart images
+            let cartImages = document.querySelectorAll('.cart-image');
+            
+            // Loop through each image and fix the src attribute
+            cartImages.forEach(image => {
+                let originalSrc = image.getAttribute('src');
+                console.log(originalSrc)
+        console.log('lol')
+        let parts = originalSrc.split("/");
+let lastThreeWords = parts.slice(-3).join("/");
+lastThreeWords='/'+lastThreeWords
+image.setAttribute('src', lastThreeWords)
+            });
+        });
+    </script>
+</body>
+</html>

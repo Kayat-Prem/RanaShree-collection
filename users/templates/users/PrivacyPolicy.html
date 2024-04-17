@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,62 +7,182 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Privacy Policy </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        .same{
+          text-align: center;
+          margin: 20px;
+        }
+    
+        .whole-about{
+          width: 1200px;
+          margin: 0 auto;
+        }
+      </style>
+
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
 </head>
 <body>
+
+    <header id="header">
+        <nav class="navbar">
+          <a class="logo" href="#logo">Ranashree.</a>
+          <ul>
+            <li><a href="/" class="active">Home</a></li>
     
-    <h1>Privacy Policy</h1>
+            <!--### The dropdown container ###-->
+            <div class="dropdown">
+              <li>
+                <p class="dropbtn">Pages <i class="fas fa-caret-down"></i></p>
+              </li>
+              <div class="dropdown-content">
+                <ul>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/faq">FAQ</a></li>
+                  <li><a href="/refund">Refund</a></li>
+                  <li><a href="/products">Products</a></li>
+    
+                </ul>
+              </div>
+            </div>
+    
+            <li><a href="/testimonial">Testimonial</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+    
+          <div class="header-logo">
+    
+            <div class="search">
+              <div class="icon"></div>
+              <div class="input">
+                <input type="text" name="input" id="mysearch" placeholder="Search" required autocomplete="off"
+                  oninput="handleSearchInput()" />
+              </div>
+              <span class="clear" onclick="clearSearch()"></span>
+            </div>
+    
+            <div>
+              <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png' %} class="user-logo"
+                  alt="user" /></a>
+            </div>
+    
+            <div>
+              <img src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
+            </div>
+    
+          </div>
+        </nav>
+      </header>
+    
+      <br><br><br><br><br>
+      <h2 class="same">Privacy Policy</h2>
+      <div class="whole-about">
+        <h4>
+            <center>Last updated: <script> document.write(new Date().getFullYear()); </script></center>
+        </h4>
+        <br>
+        <p>
+            Welcome to the Ranashree Sari Collection privacy policy. This page informs you of our policies regarding the collection, use, and disclosure of Personal Information we receive from users of the Site.
+        </p>
+        <p>
+            We use your Personal Information only for providing and improving the Site. By using the Site, you agree to the collection and use of information in accordance with this policy.
+        </p>
 
-    <h4>
-        Last updated: <script> document.write(new Date().getFullYear()); </script>
-     </h4>
-<p>
-Welcome to the Ranashree Sari Collection privacy policy. This page informs you of our policies regarding the collection, use, and disclosure of Personal Information we receive from users of the Site.
-</p>
-<p>
-We use your Personal Information only for providing and improving the Site. By using the Site, you agree to the collection and use of information in accordance with this policy.
-</p>
-<h3>
-Information Collection And Use
-</h3>
-<p>
-While using our Site, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to, your name, email address, postal address, and phone number ("Personal Information").
-</p>
+    
+        <h3 class="same">Information Collection And Use:</h3>
+        While using our Site, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to, your name, email address, postal address, and phone number ("Personal Information").
 
-<h3>
-Log Data
-</h3>
-<p>
-Like many site operators, we collect information that your browser sends whenever you visit our Site ("Log Data"). This Log Data may include information such as your computer's Internet Protocol ("IP") address, browser type, browser version, the pages of our Site that you visit, the time and date of your visit, the time spent on those pages, and other statistics.
-</p>
+        <h3 class="same">Log Data:</h3>
+        Like many site operators, we collect information that your browser sends whenever you visit our Site ("Log Data"). This Log Data may include information such as your computer's Internet Protocol ("IP") address, browser type, browser version, the pages of our Site that you visit, the time and date of your visit, the time spent on those pages, and other statistics.
+    
+        <h3 class="same">Communications:</h3>
+        We may use your Personal Information to contact you with newsletters, marketing, or promotional materials and other information that may be of interest to you. You may opt-out of receiving any, or all, of these communications from us by following the unsubscribe link or instructions provided in any email we send.
 
-<h3>
-Communications
-</h3>
-<p>
-We may use your Personal Information to contact you with newsletters, marketing, or promotional materials and other information that may be of interest to you. You may opt-out of receiving any, or all, of these communications from us by following the unsubscribe link or instructions provided in any email we send.
-</p>
 
-<h3>
-Security
-</h3>
-<p>
-The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage, is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security.
-</p>
-<h3>
-Changes To This Privacy Policy
-</h3>
-<p>
-This Privacy Policy is effective as of [Date] and will remain in effect except with respect to any changes in its provisions in the future, which will be in effect immediately after being posted on this page.
-</p>
-<p>
-We reserve the right to update or change our Privacy Policy at any time and you should check this Privacy Policy periodically. Your continued use of the Service after we post any modifications to the Privacy Policy on this page will constitute your acknowledgment of the modifications and your consent to abide and be bound by the modified Privacy Policy.
-</p>
+        <h3 class="same">Security:</h3>
+        The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage, is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security.
 
-<h3>
-Contact Us
-</h3>
-<p>
-If you have any questions about this Privacy Policy, please contact us.
-</p>
+        <h3 class="same">Changes To This Privacy Policy:</h3>
+            This Privacy Policy is effective as of [Date] and will remain in effect except with respect to any changes in its provisions in the future, which will be in effect immediately after being posted on this page. We reserve the right to update or change our Privacy Policy at any time and you should check this Privacy Policy periodically. Your continued use of the Service after we post any modifications to the Privacy Policy on this page will constitute your acknowledgment of the modifications and your consent to abide and be bound by the modified Privacy Policy.
+
+        <h3 class="same">Contact Us:</h3>
+        If you have any questions about this Privacy Policy, please contact us.
+        </p>
+      </div>
+
+    
+      <br><br>
+  <footer id="footer" role="contentinfo">
+    <div class="footer-wrapper">
+      <div class="con-container">
+        <p class="logo2">Ranashree.</p>
+        <p class="footer-bio">Ranashree Sari Collection offers a curated selection of exquisite saris, blending
+          traditional craftsmanship with contemporary elegance. Embrace the grace of Ranashree – where every sari tells
+          a story of heritage and sophistication.</p><br>
+
+        <p style="font-size: 25px;" id="contact">Contact</p><br>
+        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/call.png" %} /> +977 9873748380</p>
+        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/email.png" %} /> ranashree@gmail.com
+        </p>
+        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/location.png" %} /> Chakrapath,
+          Kathmandu, Nepal</p>
+      </div>
+
+      <div class="useful">
+        <p style="font-size: 25px;">Useful Links</p><br>
+        <p><a href="/">Home</a></p>
+        <p><a href="/about">About</a></p>
+        <p><a href="/blog">Blog</a></p>
+        <p><a href="/faq">FAQ</a></p>
+        <p><a href="/products">Products</a></p>
+        <p><a href="/contact">Contact Us</a></p>
+        <p><a href="/refund">Return Policy</a></p>
+      </div>
+
+      <div class="social">
+        <p style="font-size: 25px;">Connect with us</p>
+        <a href="www.facebook.com"><img class="footer-icon" src={% static "home/images/icons/facebook.png" %} /></a>
+        <a href="www.instagram.com"><img class="footer-icon" src={% static "home/images/icons/instagram.png" %} /></a>
+        <a href="www.youtube.com"><img class="footer-icon" src={% static "home/images/icons/youtube.png" %} /></a>
+        <a href="www.tiktok.com"><img class="footer-icon" src={% static "home/images/icons/tik-tok.png" %} /></a>
+
+        <p>
+        <p style="font-size: 25px;">Payment Methods</p>
+        <img class="footer-icon3" src={% static "home/images/icons/esewa.webp" %} />
+        </p>
+        <p style="font-size: 25px;">Happy Shopping</p>
+
+      </div>
+    </div>
+
+
+  </footer>
+
+  <p class="copy">
+    <center>
+      Copyright &copy;
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      All rights reserved | Ranashree Collection <a href="/PrivacyPolicy"><b>Privacy Policy</b></a>
+    </center>
+  </p><br>
+
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src={% static "script.js" %}></script>
+
 </body>
+
 </html>

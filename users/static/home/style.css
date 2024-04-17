@@ -389,67 +389,69 @@ section{
 }
 
     /*### Page Products ### */
-.lan-products{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.lan-images{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 300px;
-    border:1px solid lightgray;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    margin: 20px;
-    position: relative;
-    transition: filter 0.3s; 
-}
-
-.buy_btn{
-    background-color: #DA0037;
-    color: white;
-    border-radius: 5px;
-    outline: none;
-    border:none;
-    padding: 10px 15px;
-    position: absolute;
-    bottom: 20px;
-    right: 100px;
-    visibility: hidden;
-    z-index: 1; /* Blur Content bhanda mathi aaounako laagi */
-    transition: filter 0.3s;
-
-}
-
-.lan-img{
-    width:150px;
-    height:auto;
-}
-
-.lan-text{
-    font-size: 16px;
-}
-.lan-text2{
-    font-size: 18px;
-    padding: 15px 0px 10px 0px;
-}
-.lan-price{
-    margin-top: 25px;
-    font-weight: 600;
-}
-
-.lan-text3{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-weight: 700;
-    font-size: 20px;
-}
+    .lan-products {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .lan-images {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 300px;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        margin: 20px;
+        position: relative;
+        transition: filter 0.3s;
+      }
+  
+      .buy_btn {
+        background-color: #DA0037;
+        color: white;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        padding: 10px 15px;
+        position: absolute;
+        bottom: 20px;
+        right: 100px;
+        visibility: hidden;
+        z-index: 1;
+        /* Blur Content bhanda mathi aaounako laagi */
+        transition: filter 0.3s;
+      }
+  
+      .lan-img {
+        width: 150px;
+        height: auto;
+      }
+  
+      .lan-text {
+        font-size: 16px;
+      }
+  
+      .lan-text2 {
+        font-size: 18px;
+        padding: 15px 0px 10px 0px;
+      }
+  
+      .lan-price {
+        margin-top: 25px;
+        font-weight: 600;
+      }
+  
+      .lan-text3 {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-weight: 700;
+        font-size: 20px;
+      }
 
     /* ### Short Discription ### */
 .short-disc{
@@ -464,17 +466,6 @@ section{
     line-height: 1.5;
     font-size: 20px;
 }
-
-    /*### Landing Page Analysis ###*/
-/* .lan-analysis {
-    display: grid;
-    margin-bottom: -100px;
-}
-
-.lan-analysis img {
-    width: 100%;
-    height: 100%;
-} */
 
     /* ### Frequently Asked Questions ###*/
 .faq{
@@ -617,7 +608,7 @@ section{
     cursor: pointer;
     font-weight: 600;
 }
-.con:hover, .footer-bio:hover{
+.con:hover:hover{
     transform: scale(1.05);
     font-weight: lighter;
     color: #DA0037;

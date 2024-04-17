@@ -15,6 +15,18 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"/>
 
+      <style>
+        .same{
+          text-align: center;
+          margin: 20px;
+        }
+    
+        .whole-about{
+          width: 1200px;
+          margin: 0 auto;
+        }
+      </style>
+
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
 
     <link rel="stylesheet" href="{% static 'home/section.css' %}">
@@ -26,7 +38,7 @@
       <nav class="navbar">
         <a class="logo" href="#logo">Ranashree.</a>
         <ul>
-          <li><a href="#" class="active">Home</a></li>
+          <li><a href="/" class="active">Home</a></li>
 
           <!--### The dropdown container ###-->
           <div class="dropdown">
@@ -35,18 +47,18 @@
             </li>
             <div class="dropdown-content">
               <ul>
-                <li><a href="blog">Blog</a></li>
-                <li><a href="about">About</a></li>
-                <li><a href="faq">FAQ</a></li>
-                <li><a href="RefundPolicy">Refund</a></li>
-                <li><a href="products">Products</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/faq">FAQ</a></li>
+                <li><a href="/refund">Refund</a></li>
+                <li><a href="/products">Products</a></li>
 
               </ul>
             </div>
           </div>
 
-          <li><a href="#testimonial">Testimonial</a></li>
-          <li><a href="contact">Contact</a></li>
+          <li><a href="/testimonial">Testimonial</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
 
         <div class="header-logo">
@@ -79,51 +91,52 @@
       </nav>
     </header>
 
-    <div class="blog-container">
-
-    <h2 class="blog">Title: **"Unveiling Elegance: A Journey Through the Rich Heritage of Ranashree Collection"**
+    <br><br><br><br><br>
+    <div class="whole-about">
+      <!-- <div class="blog-container same"> -->
+    <h2 class="same">Title: **"Unveiling Elegance: A Journey Through the Rich Heritage of Ranashree Collection"**
     </h2>
 
     <p>
 
 
-        <h3>Introduction:</h3>
+        <h3 class="same">Introduction:</h3>
 
         In a world where trends come and go, there's something timeless about the allure of a saree. It's not just a piece of clothing; it's a canvas that tells stories of tradition, craftsmanship, and the rich cultural tapestry of Nepal. Welcome to the enchanting realm of Ranashree Collection, where each saree is more than just fabric – it's a celebration of artistry, elegance, and the spirit of womanhood.
 
         ---
 
-        <h3>**Preserving Tradition, Embracing Elegance:**</h3>
+        <h3 class="same">**Preserving Tradition, Embracing Elegance:**</h3>
 
         Ranashree Collection stands as a testament to a profound passion for preserving the timeless beauty of the saree. Handpicked with care, each saree in our collection is a masterpiece that seamlessly weaves together tradition and elegance. From the intricate patterns of classic Banarasis to the vibrant hues of Kanjeevarams, our curated selection reflects the diverse and rich cultural heritage of Nepal.
 
         ---
 
-        <h3>**Crafting Stories in Every Thread:**</h3>
+        <h3 class="same">**Crafting Stories in Every Thread:**</h3>
 
         Our vision at Ranashree Collection goes beyond just providing a saree; we aim to weave stories of grace and tradition. Each saree is meticulously curated, showcasing the artistry and craftsmanship passed down through generations. As you drape yourself in Ranashree, you carry with you not just a piece of fabric but a touch of timeless charm that enhances your individual style.
 
         ---
 
-        <h3>**A Symphony of Craftsmanship:**</h3>
+        <h3 class="same">**A Symphony of Craftsmanship:**</h3>
 
         Step into our world, and you'll witness the craftsmanship unveiled in every fold. Skilled artisans breathe life into our sarees, blending tales of tradition and innovation. Whether it's the handwoven patterns, the choice of colors, or the attention to detail, each piece at Ranashree Collection is a celebration of the diversity of Nepalese culture.
 
         ---
 
-        <h3>**Curated Elegance for Every Occasion:**</h3>
+        <h3 class="same">**Curated Elegance for Every Occasion:**</h3>
 
         We take pride in offering a carefully curated selection that tells a unique story of art, culture, and heritage. Whether you're searching for a saree for a special occasion or a timeless piece to enhance your collection, Ranashree invites you to explore the beauty woven into every thread. It's not just about the saree; it's about finding the perfect expression of your style and personality.
 
         ---
 
-        <h3>**Celebrating Womanhood:**</h3>
+        <h class="same"3>**Celebrating Womanhood:**</h3>
 
         At Ranashree Collection, we believe that every woman is a story waiting to be told. Our sarees serve as the canvas for celebrating the strength, grace, and individuality of women. The diverse range we offer complements every personality and style, making each piece a unique reflection of the wearer.
 
         ---
 
-        <h3>**Join the Journey:**</h3>
+        <h3 class="same">**Join the Journey:**</h3>
 
         Embark on a journey through the rich tapestry of Nepalese textiles with Ranashree Collection. Each saree is an invitation to discover the allure of tradition and the magic of timeless elegance that transcends generations. Your story, beautifully woven in every drape, becomes a part of the legacy we continue to craft.
 
@@ -151,13 +164,13 @@
   
           <div class="useful">
             <p style="font-size: 25px;">Useful Links</p><br>
-            <p><a href="#home">Home</a></p>
-            <p><a href="about">About</a></p>
-            <p><a href="blog">Blog</a></p>
-            <p><a href="#faq">FAQ</a></p>
-            <p><a href="products">Products</a></p>
-            <p><a href="contact">Contact Us</a></p>
-            <p><a href="RefundPolicy">Return Policy</a></p>
+            <p><a href="/">Home</a></p>
+            <p><a href="/about">About</a></p>
+            <p><a href="/blog">Blog</a></p>
+            <p><a href="/faq">FAQ</a></p>
+            <p><a href="/products">Products</a></p>
+            <p><a href="/contact">Contact Us</a></p>
+            <p><a href="/refund">Return Policy</a></p>
           </div>
   
           <div class="social">
@@ -184,7 +197,7 @@
           <script>
             document.write(new Date().getFullYear());
           </script>
-          All rights reserved | Ranashree Collection <a href="PrivacyPolicy"><b>Privacy Policy</b></a>
+          All rights reserved | Ranashree Collection <a href="/PrivacyPolicy"><b>Privacy Policy</b></a>
         </center>
       </p><br>
   

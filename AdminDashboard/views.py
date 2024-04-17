@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .models import productsModel
 from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
+from django.contrib.auth.models import User
 
 
 def Adminn(request):
@@ -24,18 +25,18 @@ def Allproducts(request):
     if request.method == 'POST':
         name = request.POST.get('Sari_Name')
         description = request.POST.get('Description')
+        ldescription = request.POST.get('LDescription')
+        size = request.POST.get('Size')
         image = request.FILES.get('Image')
         price = request.POST.get('Price')
         
-        if name and description and image and price:
-            # Save data to the database
-            productsModel.objects.create(Sari_Name=name, Description=description, Image=image, Price=price)
+        if name and description and ldescription and size and image and price:
+            productsModel.objects.create(Sari_Name=name, Description=description, LDescription=ldescription, Size=size, Image=image, Price=price)
             messages.success(request, "Successfully Added!")
-            return redirect('allproducts')  # Redirect to the same page after form submission
+            return redirect('allproducts')  
         else:
             messages.error(request, "All fields are required.")
-    
-    # Fetch all existing products from the database
+
     products = productsModel.objects.all()
     
     return render(request, 'allproducts.html', {'products': products})
@@ -47,6 +48,8 @@ def edit_product(request, product_id):
     if request.method == 'POST':
         product.Sari_Name = request.POST.get('Sari_Name')
         product.Description = request.POST.get('Description')
+        product.ldescription = request.POST.get('LDescription')
+        product.size = request.POST.get('Size')
         product.Price = request.POST.get('Price')
         
         # Check if a new image file was uploaded
@@ -66,17 +69,18 @@ def edit_product(request, product_id):
 def delete_product(request, product_id):
     if request.method == 'POST':
         try:
-            # Retrieve the product from the database
             product = productsModel.objects.get(id=product_id)
-            # Delete the product from the database
             product.delete()
-            # Return success response
             return JsonResponse({'success': True})
         except productsModel.DoesNotExist:
             return JsonResponse({'success': False, 'error': 'Product does not exist'}, status=404)
     else:
-        # Return error response if request method is not POST
         return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
+
+
+def Allusers(request):
+    all_users = CustomUser.objects.all()
+    return render(request, 'allusers.html', {'users': all_users})
 
 
 def Allorders(request):
@@ -92,26 +96,6 @@ def Allorders(request):
         
     #     messages.success(request, "Successfully Added!")
     return render(request, 'allorders.html')
-
-def Allusers(request):
-    if request.method == 'POST':
-        name = request.POST.get('Sari_Name')
-        description = request.POST.get('Description')
-        image = request.FILES.get('Image')
-        price = request.POST.get('Price')
-        
-        if name and description and image and price:
-            # Save data to the database
-            productsModel.objects.create(Sari_Name=name, Description=description, Image=image, Price=price)
-            messages.success(request, "Successfully Added!")
-            return redirect('allproducts')  # Redirect to the same page after form submission
-        else:
-            messages.error(request, "All fields are required.")
-    
-    # Fetch all existing products from the database
-    products = productsModel.objects.all()
-    
-    return render(request, 'allproducts.html', {'products': products})
 
 
 def Settings(request):

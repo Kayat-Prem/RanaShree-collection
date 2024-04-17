@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import productsModel
+from .models import Cart
 
 # Register your models here.
 class ProductsModelAdmin(admin.ModelAdmin):
@@ -13,4 +14,12 @@ class ProductsModelAdmin(admin.ModelAdmin):
 
 # Register the productsModel class with the custom admin class
 admin.site.register(productsModel, ProductsModelAdmin)
+
+
+class CartModelAdmin(admin.ModelAdmin):
+    list_display = ('id',)
+
+admin.site.register(Cart, CartModelAdmin)
+
+
 
