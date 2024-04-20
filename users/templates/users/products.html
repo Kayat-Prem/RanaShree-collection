@@ -130,8 +130,13 @@
         </div>
 
         <div>
-          <img src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
+          <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart"/>
         </div>
+        <script>
+          document.getElementById('cart_icon').addEventListener('click',(()=>{
+            window.location.href='/addCart'
+          }))
+        </script>
 
       </div>
     </nav>
@@ -147,7 +152,7 @@
         <p class="lan-text2">{{ product.Sari_Name }}</p>
         <p class="lan-price">{{ product.Price }}</p>
 
-        <a href="individualProducts/{{ product.id }}">
+        <a href="/individualProducts/{{ product.id }}">
           <p class="buy_btn">Buy Now</p>
         </a>
       </div>
@@ -155,6 +160,7 @@
     </div>
     {% endfor %}
   </div>
+
 
   <footer id="footer" role="contentinfo">
     <div class="footer-wrapper">
@@ -174,13 +180,13 @@
 
       <div class="useful">
         <p style="font-size: 25px;">Useful Links</p><br>
-        <p><a href="">Home</a></p>
-        <p><a href="about">About</a></p>
-        <p><a href="blog">Blog</a></p>
-        <p><a href="#faq">FAQ</a></p>
-        <p><a href="products">Products</a></p>
-        <p><a href="contact">Contact Us</a></p>
-        <p><a href="RefundPolicy">Return Policy</a></p>
+        <p><a href="/">Home</a></p>
+        <p><a href="/about">About</a></p>
+        <p><a href="/blog">Blog</a></p>
+        <p><a href="/faq">FAQ</a></p>
+        <p><a href="/products">Products</a></p>
+        <p><a href="/contact">Contact Us</a></p>
+        <p><a href="/refund">Return Policy</a></p>
       </div>
 
       <div class="social">

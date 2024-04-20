@@ -1,233 +1,391 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Individual Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-  <style>
-    .productsContainer {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
+        .cart-heading {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 2em;
+            background-color: whitesmoke;
+        }
 
-    .Product-data {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px;
-      cursor: pointer;
-      margin: 0px;
-      position: relative;
-      transition: filter 0.3s;
-    }
+        .cart-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1000px;
+            padding: 20px;
+        }
 
-    .buy_btnn,
-    .addCart {
-      background-color: #DA0037;
-      color: white;
-      border-radius: 5px;
-      border: none;
-      padding: 10px 15px;
-      margin-bottom: 50px;
-    }
+        .cart-container {
+            border-radius: 5px;
+            margin: 10px;
+            width: calc(33% - 20px);
+            /* Adjust based on desired number of items per row */
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .buy_btnn {
-      position: absolute;
-      bottom: 20px;
-      left: 150px;
-    }
+        .cart-container:hover {
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+        }
 
-    .addCart {
-      position: absolute;
-      bottom: 20px;
-      left: 10px;
-    }
+        .cart-image {
+            width: 100%;
+            height: 30vh;
+            object-fit: cover;
+        }
 
-    .productImage {
-      width: auto;
-      height: 60vh;
-      object-fit: cover;
-      margin-left: 7%;
-    }
+        .cart-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    .product-text {
-      font-size: 16px;
-      text-align: justify;
-      margin: 15px 20px 15px 0px;
-      width: 400px;
-    }
+        .cart-details h2 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
 
-    .product-text2 {
-      font-size: 20px;
-      padding: 15px 0px 10px 0px;
-      font-weight: bold;
-    }
+        .cart-details p {
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
 
-    .product-price {
-      margin-top: 25px;
-      font-weight: 600;
-    }
+        .cart-details p strong {
+            font-weight: bold;
+        }
 
-    .product-text3 {
-      display: flex;
-      justify-content: center;
-      text-align: center;
-      font-weight: 700;
-      font-size: 20px;
-    }
-  </style>
+        .sari_price {
+            color: #e74c3c;
+        }
+
+
+        /* ### Add Address ### */
+        #id_name,
+        #id_description,
+        #id_number,
+        .add-product {
+            width: 300px;
+            height: 35px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: -18%;
+            margin-bottom: -15%;
+        }
+
+        .send-data {
+            width: 100%;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .send-data div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 15px 30px;
+        }
+
+        .add-product {
+            width: 300px;
+            height: auto;
+            padding: 10px;
+            background-color: #DA0030;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 105%;
+            font-size: 25px;
+        }
+
+        .add-product:hover {
+            background-color: darkred;
+        }
+
+        .delete {
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .delete img {
+            width: 25px;
+            height: auto;
+            position: absolute;
+            margin: -30px 0 0 220px;
+            cursor: pointer;
+        }
+
+        .new {
+            background-color: #DA0030;
+            color: white;
+            border: 1px solid #da0030;
+            border-radius: 5px;
+            padding: 3px 2px;
+            width: 80px;
+            height: auto;
+            font-size: 16px;
+            position: absolute;
+            margin: -250px 0px 0px 200px;
+        }
+    </style>
 
 </head>
 
 <body>
-
-
-  <header id="header">
-    <nav class="navbar">
-      <a class="logo" href="">Ranashree.</a>
-      <ul>
-        <li><a href="/" class="active">Home</a></li>
-
-        <!--### The dropdown container ###-->
-        <div class="dropdown">
-          <li>
-            <p class="dropbtn">Pages <i class="fas fa-caret-down"></i></p>
-          </li>
-          <div class="dropdown-content">
+    <header id="header">
+        <nav class="navbar">
+            <a class="logo" href="">Ranashree.</a>
             <ul>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/faq">FAQ</a></li>
-              <li><a href="/refund">Refund</a></li>
-              <li><a href="/products">Products</a></li>
+                <li><a href="/" class="active">Home</a></li>
 
+                <!--### The dropdown container ###-->
+                <div class="dropdown">
+                    <li>
+                        <p class="dropbtn">Pages <i class="fas fa-caret-down"></i></p>
+                    </li>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                            <li><a href="/refund">Refund</a></li>
+                            <li><a href="/products">Products</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <li><a href="/testimonial">Testimonial</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
-          </div>
+
+            <div class="header-logo">
+
+                <div class="search">
+                    <div class="icon"></div>
+                    <div class="input">
+                        <input type="text" name="input" id="mysearch" placeholder="Search" required autocomplete="off"
+                            oninput="handleSearchInput()" />
+                    </div>
+                    <span class="clear" onclick="clearSearch()"></span>
+
+                </div>
+                <div>
+                    <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png' %}
+                            class="user-logo" alt="user" /></a>
+                </div>
+
+                <div>
+                    <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart"/>
+                  </div>
+                  <script>
+                    document.getElementById('cart_icon').addEventListener('click',(()=>{
+                      window.location.href='/addCart'
+                    }))
+                  </script>
+
+            </div>
+        </nav>
+    </header>
+
+   
+    <br><br><br><br><br>
+    <h1 class="cart-heading">
+        <center>" Your Order "</center>
+    </h1>
+    <div class="cart-items">
+      
+        <div class="cart-container">
+         
+            <img src="{{ product.Image.url }}" alt="{{ product.Sari_Name }}" class="cart-image">
+            <div class="cart-details">
+                <h2>{{ product.Sari_Name }}</h2>
+                <p><strong>Description:</strong> {{ product.Description }}</p>
+                <p><strong>Price: Rs.</strong><span class="sari_price" id="priceofsari">{{ product.Price }}</span></p>
+                <p><strong>Size:</strong> {{ product.Size }}</p>
+               
+            </div>
         </div>
+ 
 
-        <li><a href="/testimonial">Testimonial</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-
-      <div class="header-logo">
-
-        <div class="search">
-          <div class="icon"></div>
-          <div class="input">
-            <input type="text" name="input" id="mysearch" placeholder="Search" required autocomplete="off"
-              oninput="handleSearchInput()" />
-          </div>
-          <span class="clear" onclick="clearSearch()"></span>
-
-        </div>
-        <div>
-          <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png' %} class="user-logo"
-              alt="user" /></a>
-        </div>
-
-        <div>
-          <img src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
-        </div>
-
-      </div>
-    </nav>
-  </header>
-
-
-  <br><br><br>
-  <div class="productsContainer">
-    <div class="Product-data">
-      <div>
-        <p class="product-text2">{{ product.Sari_Name }}</p>
-        <div class="product-text">{{ product.Description }}</div>
-        <div class="product-text">{{ product.LDescription }}</div>
-        <p class="product-price">{{ product.Price }}</p>
-        <div class="product-text">{{ product.Size }}</div>
-        <a href="/addCart"><p class="addCart">Add to Cart</p></a>
-        <a href="{% url 'individualProducts' product.id %}"><p class="buy_btnn">Buy Now</p></a>
-        </a>
-      </div>
-      <img src="{{ product.Image.url }}" class="productImage" alt="{{ product.Sari_Name }}">
-    </div>
-  </div>
-
-  <footer id="footer" role="contentinfo">
-    <div class="footer-wrapper">
-      <div class="con-container">
-        <p class="logo2">Ranashree.</p>
-        <p class="footer-bio">Ranashree Sari Collection offers a curated selection of exquisite saris, blending
-          traditional craftsmanship with contemporary elegance. Embrace the grace of Ranashree – where every sari tells
-          a story of heritage and sophistication.</p><br>
-
-        <p style="font-size: 25px;" id="contact">Contact</p><br>
-        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/call.png" %} /> +977 9873748380</p>
-        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/email.png" %} /> ranashree@gmail.com
-        </p>
-        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/location.png" %} /> Chakrapath,
-          Kathmandu, Nepal</p>
-      </div>
-
-      <div class="useful">
-        <p style="font-size: 25px;">Useful Links</p><br>
-        <p><a href="">Home</a></p>
-        <p><a href="about">About</a></p>
-        <p><a href="blog">Blog</a></p>
-        <p><a href="#faq">FAQ</a></p>
-        <p><a href="products">Products</a></p>
-        <p><a href="contact">Contact Us</a></p>
-        <p><a href="RefundPolicy">Return Policy</a></p>
-      </div>
-
-      <div class="social">
-        <p style="font-size: 25px;">Connect with us</p>
-        <a href="www.facebook.com"><img class="footer-icon" src={% static "home/images/icons/facebook.png" %} /></a>
-        <a href="www.instagram.com"><img class="footer-icon" src={% static "home/images/icons/instagram.png" %} /></a>
-        <a href="www.youtube.com"><img class="footer-icon" src={% static "home/images/icons/youtube.png" %} /></a>
-        <a href="www.tiktok.com"><img class="footer-icon" src={% static "home/images/icons/tik-tok.png" %} /></a>
-
-        <p>
-        <p style="font-size: 25px;">Payment Methods</p>
-        <img class="footer-icon3" src={% static "home/images/icons/esewa.webp" %} />
-        </p>
-        <p style="font-size: 25px;">Happy Shopping</p>
-
-      </div>
     </div>
 
-    <br><br>
+    <div
+        style="display: flex; flex-direction: column; align-items: center; justify-content: space-around; padding: 20px; background: whitesmoke; max-width: 100%;">
+        <h2>Delivery Charge = Rs. 100</h2>
+        <div
+            style="display: flex; align-items: center; justify-content: center; gap: 3%; width: 50%; margin-top: 20px;">
+            <h1>Total Price </h1>
+            <h1>=</h1>
+            <h1 id="total_price"></h1>
+        </div>
+    </div>
 
-    <h2>Reviews & Rating</h2>
 
 
-  </footer>
+    <section class="section">
+        <form action="">
+            <div class="send-data">
+                <div>
+                    <label>Full Name:</label>
+                    <input type="text" id="id_name" name="full_Name" required>
+                </div>
+
+                <div>
+                    <label>Address:</label>
+                    <input type="text" id="id_description" name="Description" required>
+                </div>
+
+                <div>
+                    <label>Number:</label>
+                    <input type="text" id="id_number" name="Price" required>
+                </div>
+
+                <center><button type="submit" class="add-product">Place Order</button></center>
+            </div>
+        </form>
+    </section>
 
 
+    <footer id="footer" role="contentinfo">
+        <div class="footer-wrapper">
+            <div class="con-container">
+                <p class="logo2">Ranashree.</p>
+                <p class="footer-bio">Ranashree Sari Collection offers a curated selection of exquisite saris, blending
+                    traditional craftsmanship with contemporary elegance. Embrace the grace of Ranashree – where every
+                    sari tells
+                    a story of heritage and sophistication.</p><br>
 
-  <p class="copy">
-    <center>
-      Copyright &copy;
-      <script>
-        document.write(new Date().getFullYear());
-      </script>
-      All rights reserved | Ranashree Collection <a href="/PrivacyPolicy"><b>Privacy Policy</b></a>
-    </center>
-  </p><br>
+                <p style="font-size: 25px;" id="contact">Contact</p><br>
+                <p class="con"><img class="footer-icon1" src={% static "home/images/icons/call.png" %} /> +977
+                    9873748380</p>
+                <p class="con"><img class="footer-icon1" src={% static "home/images/icons/email.png" %} />
+                    ranashree@gmail.com
+                </p>
+                <p class="con"><img class="footer-icon1" src={% static "home/images/icons/location.png" %} />
+                    Chakrapath,
+                    Kathmandu, Nepal</p>
+            </div>
 
-  <script src={% static "script.js" %}></script>
+            <div class="useful">
+                <p style="font-size: 25px;">Useful Links</p><br>
+                <p><a href="">Home</a></p>
+                <p><a href="about">About</a></p>
+                <p><a href="blog">Blog</a></p>
+                <p><a href="#faq">FAQ</a></p>
+                <p><a href="products">Products</a></p>
+                <p><a href="contact">Contact Us</a></p>
+                <p><a href="RefundPolicy">Return Policy</a></p>
+            </div>
 
+            <div class="social">
+                <p style="font-size: 25px;">Connect with us</p>
+                <a href="www.facebook.com"><img class="footer-icon" src={% static "home/images/icons/facebook.png"%} /></a>
+                <a href="www.instagram.com"><img class="footer-icon" src={% static "home/images/icons/instagram.png"%} /></a>
+                <a href="www.youtube.com"><img class="footer-icon" src={% static "home/images/icons/youtube.png"%} /></a>
+                <a href="www.tiktok.com"><img class="footer-icon" src={% static "home/images/icons/tik-tok.png"%} /></a>
+
+                <p>
+                <p style="font-size: 25px;">Payment Methods</p>
+                <img class="footer-icon3" src={% static "home/images/icons/esewa.webp" %} />
+                </p>
+                <p style="font-size: 25px;">Happy Shopping</p>
+
+            </div>
+        </div>
+
+        <br><br>
+
+
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all cart images
+            let cartImages = document.querySelectorAll('.cart-image');
+
+            // Loop through each image and fix the src attribute
+            cartImages.forEach(image => {
+                let originalSrc = image.getAttribute('src');
+                console.log(originalSrc)
+                console.log('Sari Image')
+                let parts = originalSrc.split("/");
+                let lastThreeWords = parts.slice(-3).join("/");
+                lastThreeWords = '/' + lastThreeWords
+                image.setAttribute('src', lastThreeWords)
+            });
+        });
+
+
+      
+    </script>
+
+    <p class="copy">
+        <center>
+            Copyright &copy;
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+            All rights reserved | Ranashree Collection <a href="/PrivacyPolicy"><b>Privacy Policy</b></a>
+        </center>
+    </p><br>
+
+    <script src={% static "script.js" %}></script>
+    <script>
+        let prices = document.getElementById("priceofsari").textContent
+        console.log(prices)
+        // Extract the numerical value from the prices string
+        let priceString = prices.trim(); // Remove leading/trailing spaces
+        let priceNumber = parseInt(priceString.replace(/\D+/g, ''), 10); // Extract digits only
+
+        // Add 100 to the extracted numerical value
+        let totalPrice = priceNumber + 100;
+
+        // Update the total price element with the new value
+        document.getElementById('total_price').textContent = "Rs " + totalPrice;
+    </script>
+    
 
 </body>
 

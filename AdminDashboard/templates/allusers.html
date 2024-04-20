@@ -20,9 +20,7 @@
       width: 110%;
       overflow: auto;
       border: 1px solid #dddddd;
-      align-items: center;
-      justify-content: center;
-      margin-left: 8%;
+      margin-left: 0%;
     }
   </style>
 
@@ -183,6 +181,8 @@
               <th>Email</th>
               <th>Contact</th>
               <th>Is Verified</th>
+              <th>Is Super User</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -194,6 +194,10 @@
               <td>{{ user.email }}</td>
               <td>{{ user.contact_number }}</td>
               <td>{% if user.is_verified %}Yes{% else %}No{% endif %}</td>
+              <td>{% if user.is_superuser %}Yes{% else %}No{% endif %}</td>
+              <td>
+                <a href="#" onclick="deleteUser('{{ user.id }}')" class="action-icon"><i class="fas fa-trash"></i></a>
+              </td>            
             </tr>
             {% endfor %}
           </tbody>
@@ -203,6 +207,46 @@
     </form>
   </section>
 
+  <script>
+    function deleteUser(userId) {
+      if (confirm('Are you sure you want to delete this user?')) {
+        const csrftoken = getCookie('csrftoken');
+        fetch(`/delete_user/${userId}/`, {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrftoken,
+          },
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            location.reload();
+          } else {
+            alert(data.error);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while deleting the user.');
+        });
+      }
+    }
+    
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    </script>
 
   <script src={% static "AdminDashboard/script.js" %}></script>
 

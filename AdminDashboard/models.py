@@ -15,19 +15,6 @@ class productsModel(models.Model):
     # user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
 
-# #       ### Individual Product Model ####
-# class individualModel(models.Model):
-#     Sari_Name = models.CharField(max_length=100)
-#     Description = models.TextField()
-#     LDescription = models.TextField()
-#     Image = models.ImageField(upload_to='images/')
-#     Price = models.TextField()
-#     Quantity = models.IntegerField()
-#     Size = models.TextField()
-#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)  
-
-
-
 class Cart(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=100)

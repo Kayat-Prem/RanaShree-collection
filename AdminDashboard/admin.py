@@ -4,7 +4,7 @@ from .models import Cart
 
 # Register your models here.
 class ProductsModelAdmin(admin.ModelAdmin):
-    list_display = ('Sari_Name', 'Description', 'display_image', 'Price')
+    list_display = ('id', 'Sari_Name', 'Description', 'display_image', 'Price')
 
     def display_image(self, obj):
         return '<img src="{}" width="100" />'.format(obj.Image.url)
@@ -17,9 +17,10 @@ admin.site.register(productsModel, ProductsModelAdmin)
 
 
 class CartModelAdmin(admin.ModelAdmin):
-    list_display = ('id',)
+    list_display = ('id', 'user', 'product_name', 'description', 'price', 'size', 'quantity', 'image',)
 
 admin.site.register(Cart, CartModelAdmin)
+
 
 
 

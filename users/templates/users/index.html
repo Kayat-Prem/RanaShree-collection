@@ -67,8 +67,13 @@
         </div>
 
         <div>
-          <img src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
+          <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart"/>
         </div>
+        <script>
+          document.getElementById('cart_icon').addEventListener('click',(()=>{
+            window.location.href='/addCart'
+          }))
+        </script>
 
       </div>
     </nav>
@@ -360,9 +365,7 @@
 
   </div> -->
 
-  <!-- <div>
-    <a href="{% url 'product' %}" class="lan-text3">View All Products</a>
-  </div> -->
+
 
   <div class="lan-products">
     {% for product in products %}

@@ -59,10 +59,8 @@ def edit_product(request, product_id):
         product.save()
         messages.success(request, "Product updated successfully!")
         return redirect('allproducts')
-    # Fetch all products from the database
     products = productsModel.objects.all()
     
-    # Render the edit product page with the product details and all products
     return render(request, 'edit_product.html', {'product': product, 'products': products})
 
 
@@ -82,31 +80,24 @@ def Allusers(request):
     all_users = CustomUser.objects.all()
     return render(request, 'allusers.html', {'users': all_users})
 
+def delete_user(request, user_id):
+    if request.method == 'POST':
+        try:
+            user = CustomUser.objects.get(id=user_id)
+            if user.is_superuser:
+                return JsonResponse({'success': False, 'error': 'Superuser cannot be deleted'})
+            else:
+                user.delete()
+                return JsonResponse({'success': True})
+        except CustomUser.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'User does not exist'}, status=404)
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
+    
 
 def Allorders(request):
-    # if request.method == 'POST':
-    #     name = request.POST.get('Sari_Name')
-    #     description = request.POST.get('Description')
-    #     image = request.FILES.get('Image')
-    #     price = request.POST.get('Price')
-        
-        
-    #     # Save data to the database
-    #     productsModel.objects.create(Sari_Name=name, Description=description, Image=image, Price=price)
-        
-    #     messages.success(request, "Successfully Added!")
     return render(request, 'allorders.html')
 
 
 def Settings(request):
-    # if request.method == 'POST':
-    #     name = request.POST.get('Sari_Name')
-    #     description = request.POST.get('Description')
-    #     image = request.FILES.get('Image')
-    #     price = request.POST.get('Price')
-        
-   
-    #     # Save data to the database
-    #     productsModel.objects.create(Sari_Name=name, Description=description, Image=image, Price=price)
-        
     return render(request, 'settings.html')

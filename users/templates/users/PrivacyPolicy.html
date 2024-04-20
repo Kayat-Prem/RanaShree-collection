@@ -76,8 +76,13 @@
             </div>
     
             <div>
-              <img src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
+              <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart"/>
             </div>
+            <script>
+              document.getElementById('cart_icon').addEventListener('click',(()=>{
+                window.location.href='/addCart'
+              }))
+            </script>
     
           </div>
         </nav>

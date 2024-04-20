@@ -1,6 +1,6 @@
 import uuid
 from django.contrib import admin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import CustomUser
 from django.contrib import messages
 from django.contrib.auth import authenticate,login
@@ -13,15 +13,24 @@ from google.auth.transport import requests
 from django.contrib.auth.decorators import login_required
 from AdminDashboard.models import productsModel
 
-
 def LandingPage(request):
         products = productsModel.objects.all()
         return render(request, 'users/index.html', {'products': products})
 
-@login_required(login_url='/login/') 
-def UserPage(request):
-    products = productsModel.objects.all()
-    return render(request, 'user/user.html', {'products': products})
+# @login_required(login_url='/login/')
+# def LandingPage(request):
+#         if request.username.is_authenticated:
+#             products = CustomUser.objects.filter(username=request.username)
+#         else:
+#             products = []
+#         return render(request, 'users/index.html', {'products': products})
+
+
+# @login_required(login_url='/login/') 
+# def UserPage(request):
+#     products = productsModel.objects.all()
+#     return render(request, 'users/user.html', {'products': products})
+
 
 
 def AboutUs(request):
@@ -42,9 +51,12 @@ def PrivacyPolicy(request):
 def faq(request):
     return render(request, "users/faq.html")
 
-def Products(request):
+def Testimonial(request):
+    return render(request, "users/testimonial.html")
+
+def products(request):
     products = productsModel.objects.all()
-    return render(request, "users/products.html",{'products': products})
+    return render(request, "users/products.html", {'products': products})
 
 def individualProducts(request, id):
     product = productsModel.objects.get(id=id)
@@ -53,10 +65,26 @@ def individualProducts(request, id):
 def individualProducts(request, id):
     try:
         product = productsModel.objects.get(id=id)
-        print("Product found:", product)  # Debugging statement
+        print("Sari Product found:", product) 
     except productsModel.DoesNotExist:
-        print("Product not found")  # Debugging statement
+        print("Sari Product not found")  
     return render(request, "users/individualProduct.html", {'product': product})
+
+def placeOrder(request, id):
+    product = productsModel.objects.get(id=id)
+    return render(request, "users/placeOrder.html", {'product': product})
+
+def placeOrder(request, id):
+    try:
+        products = get_object_or_404(productsModel, id=id)
+     
+        return render(request, "users/placeOrder.html", {'product': products})
+    except productsModel.DoesNotExist:
+        messages.error(request, "Product not found.")  
+        return redirect('products')  
+
+
+
 
 def addCart(request):
     if request.user.is_authenticated:
@@ -66,47 +94,64 @@ def addCart(request):
     return render(request, "users/addCart.html", {'cart_items': cart_items})
 
 
-# views.py
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from AdminDashboard.models import Cart
 from decimal import Decimal
 
+        # ### Add to cart Items. ###
 @csrf_exempt
 def add_to_cart(request):
     if request.method == 'POST':
-        # Extract data from request
         user = request.user if request.user.is_authenticated else None
         product_name = request.POST.get('product_name')
         description = request.POST.get('description')
-        
         size = request.POST.get('size')
         image = request.POST.get('image')
         quantity = int(request.POST.get('quantity', 1)) 
-   
+
         price_str = request.POST.get('price')
         price = Decimal(price_str.replace('Rs. ', '').replace(',', '')) 
-        print(user,product_name,description,'p',price,'s',size,'q',quantity)
-        # Save data to Cart model
-        cart_item = Cart.objects.create(
+        
+        # Check if the product already exists in the cart
+        existing_item = Cart.objects.filter(
             user=user,
             product_name=product_name,
             description=description,
-            price=price,
-            size=size,
-            image=image,
-            quantity=quantity
-        )
+            size=size
+        ).first()
+
+        if existing_item:
+            # If the product already exists, update the quantity instead of creating a new entry
+            existing_item.quantity += quantity
+            existing_item.save()
+        else:
+            # If the product does not exist, create a new entry in the cart
+            cart_item = Cart.objects.create(
+                user=user,
+                product_name=product_name,
+                description=description,
+                price=price,
+                size=size,
+                image=image,
+                quantity=quantity
+            )
         return JsonResponse({'success': True})
     else:
         return JsonResponse({'success': False, 'error': 'Only POST requests are allowed.'})
 
 
+    # ### Detete sigle item from the cart ###
+from django.shortcuts import get_object_or_404  
+def delete_from_cart(request, item_id):
+    item = get_object_or_404(Cart, id=item_id)
+    item.delete()
+    return redirect('addCart')
 
-def Testimonial(request):
-    return render(request, "users/testimonial.html")
 
 
+
+# #### SIGN UP ###
 def Signup(request):
     context = {
                 'username': '',
@@ -194,10 +239,9 @@ def Login(request):
     context = {'username': ''}
     if request.method == 'POST':
         username = request.POST['username']
-        password = request.POST['pass1']  # Corrected the variable name from pass1 to password
+        password = request.POST['pass1'] 
 
         context = {'username': username}
-        print('chor')
         user = authenticate(username=username, password=password)
         if user is not None and user.is_verified:  # Check if user is verified
             login(request, user)
@@ -207,7 +251,7 @@ def Login(request):
             else:
                 fullname = user.full_name
                 messages.success(request, "Successfully logged in!")
-                return redirect("user")
+                return redirect("index")
         elif user is not None and not user.is_verified:
             messages.error(request, "Your email is not verified yet. Please check your email for verification.")
             
@@ -306,10 +350,8 @@ def auth_receiver(request):
     
     try:
         user = CustomUser.objects.get(email=user_data['email'])
-        # Log in the user
         login(request, user)
 
-        # Redirect to dashboard if user exists
         return redirect('index')
     except CustomUser.DoesNotExist:
         

@@ -43,6 +43,12 @@
       padding: 10px 15px;
       margin-bottom: 50px;
     }
+    .buy_btnn:hover,
+    .addCart:hover{
+      background-color: white;
+      border: 1px solid #DA0037;
+      color: #DA0037;
+    }
 
     .buy_btnn {
       position: absolute;
@@ -60,14 +66,14 @@
       width: auto;
       height: 60vh;
       object-fit: cover;
-      margin-left: 7%;
+      margin-left: 5%;
     }
 
     .product-text {
       font-size: 16px;
       text-align: justify;
       margin: 15px 20px 15px 0px;
-      width: 400px;
+      width: 500px;
     }
 
     .product-text2 {
@@ -135,21 +141,22 @@
         </div>
         <div>
           <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png' %} class="user-logo"
-              alt="user" /></a>
+              alt="user"/></a>
         </div>
 
         <div>
-          <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
+          <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart"/>
         </div>
+        <script>
+          document.getElementById('cart_icon').addEventListener('click',(()=>{
+            window.location.href='/addCart'
+          }))
+        </script>
 
       </div>
     </nav>
   </header>
-<script>
-  document.getElementById('cart_icon').addEventListener('click',(()=>{
-    window.location.href='/addCart'
-  }))
-</script>
+
 
   <br><br><br>
   <div class="productsContainer">
@@ -159,9 +166,9 @@
         <div class="product-text">{{ product.Description }}</div>
         <div class="product-text">{{ product.LDescription }}</div>
         <p class="product-price">{{ product.Price }}</p>
-        <div class="product-text">{{ product.Size }}</div>
+        <div class="product-text">{{ product.Size }}</div><br>
         <a href="/addCart"><p class="addCart">Add to Cart</p></a>
-        <a href="{% url 'individualProducts' product.id %}"><p class="buy_btnn">Buy Now</p></a>
+        <a href="{% url 'placeOrder' product.id %}"><p class="buy_btnn">Buy Now</p></a>
         </a>
       </div>
       <img src="{{ product.Image.url }}" class="productImage" alt="{{ product.Sari_Name }}">
@@ -231,6 +238,7 @@
   </p><br>
 
   <script src={% static "script.js" %}></script>
+
 <!-- Add this script tag in your HTML file -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -274,6 +282,7 @@
       });
   });
 </script>
+
 
 
 </body>

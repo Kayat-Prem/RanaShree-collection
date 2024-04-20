@@ -1,5 +1,4 @@
 // Search Option
-console.log("hellos")
 const icon = document.querySelector('.icon');
 const search = document.querySelector('.search');
 const input = document.getElementById('mysearch');
@@ -30,10 +29,9 @@ function handleSearchInput() {
 
     // Your logic for redirection based on the search term
     // For example, redirect to the blog section if the search term contains "blog"
-    if (searchTerm.includes('blog')) {
-        window.location.href = '/blog';
+    if (searchTerm.includes('allusers.html')) {
+        window.location.href = '/allusers.html';
     }
-    // Add more conditions for different sections or pages as needed
 }
 
 // ### Sidebar ###
@@ -42,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     sidebarItems.forEach(item => {
         item.addEventListener('click', function() {
-            document.querySelector('.sidebar').style.width = '250px';
+            document.querySelector('.sidebar').style.width = '300px';
         });
     });
 });
@@ -66,7 +64,7 @@ function editProduct(productId) {
     window.location.href = `/edit_product/${productId}`;
   }
 
-  function deleteProduct(productId) {
+function deleteProduct(productId) {
     if (confirm('Are you sure you want to delete this product?')) {
         $.ajax({
             type: 'POST',
@@ -87,6 +85,3 @@ function editProduct(productId) {
     }
 }
 
-
-  
-  

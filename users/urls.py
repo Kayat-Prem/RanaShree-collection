@@ -23,7 +23,6 @@ from django.contrib.auth import views as auth
 urlpatterns = [
 
     path("", views.LandingPage, name='index'),
-    path("user/", views.UserPage, name='user'),
     path("about/", views.AboutUs, name='about'),
     path("blog/", views.Blog, name='blog'),
     path("contact/", views.Contact, name='contact'),
@@ -39,9 +38,12 @@ urlpatterns = [
     path('auth-receiver', views.auth_receiver, name='auth_receiver'),
     path("testimonial/", views.Testimonial, name='testimonial'),
 
-    
-    path("products/", views.Products, name='product'),
+
+    path("products/", views.products, name='products'),
     path("individualProducts/<int:id>", views.individualProducts, name='individualProducts'),
     path("addCart/", views.addCart, name='addCart'),
     path('add_to_cart/',views.add_to_cart,name='add_to_cart'),
+    path('delete-from-cart/<int:item_id>/', views.delete_from_cart, name='delete_from_cart'),
+    
+    path("placeOrder/<int:id>", views.placeOrder, name='placeOrder'),
 ] 
