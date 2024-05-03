@@ -17,21 +17,6 @@ def LandingPage(request):
         products = productsModel.objects.all()
         return render(request, 'users/index.html', {'products': products})
 
-# @login_required(login_url='/login/')
-# def LandingPage(request):
-#         if request.username.is_authenticated:
-#             products = CustomUser.objects.filter(username=request.username)
-#         else:
-#             products = []
-#         return render(request, 'users/index.html', {'products': products})
-
-
-# @login_required(login_url='/login/') 
-# def UserPage(request):
-#     products = productsModel.objects.all()
-#     return render(request, 'users/user.html', {'products': products})
-
-
 
 def AboutUs(request):
         return render(request, "users/about.html")
@@ -70,19 +55,6 @@ def individualProducts(request, id):
         print("Sari Product not found")  
     return render(request, "users/individualProduct.html", {'product': product})
 
-def placeOrder(request, id):
-    product = productsModel.objects.get(id=id)
-    return render(request, "users/placeOrder.html", {'product': product})
-
-def placeOrder(request, id):
-    try:
-        products = get_object_or_404(productsModel, id=id)
-     
-        return render(request, "users/placeOrder.html", {'product': products})
-    except productsModel.DoesNotExist:
-        messages.error(request, "Product not found.")  
-        return redirect('products')  
-
 
 
 
@@ -94,10 +66,61 @@ def addCart(request):
     return render(request, "users/addCart.html", {'cart_items': cart_items})
 
 
+# def placeOrder(request, id):
+#     product = productsModel.objects.get(id=id)
+#     return render(request, "users/placeOrder.html", {'product': product})
+
+def placeOrder(request, id):
+    try:
+        products = get_object_or_404(productsModel, id=id)
+     
+        return render(request, "users/placeOrder.html", {'product': products})
+    except productsModel.DoesNotExist:
+        messages.error(request, "Product not found.")  
+        return redirect('products') 
+    
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from AdminDashboard.models import Cart
 from decimal import Decimal
+from AdminDashboard.models import Order
+from django.contrib.auth.decorators import login_required
+from django.core.files.uploadedfile import InMemoryUploadedFile
+@login_required
+@csrf_exempt
+def place_order(request):
+    if request.method == 'POST':
+        user = request.user
+        sari_name = request.POST.get('sari_name')
+        description = request.POST.get('description')
+        price = request.POST.get('price')
+        size = request.POST.get('size')
+        image = request.FILES.get('image')  # Use request.FILES to get the image
+        full_name = request.POST.get('full_name')
+        address = request.POST.get('address')
+        number = request.POST.get('number')
+
+        # Create and save the order instance
+        order = Order(
+            sari_name=sari_name,
+            description=description,
+            price=price,
+            size=size,
+            image=image,  # Assign the uploaded image
+            full_name=full_name,
+            address=address,
+            number=number,
+            user=user  # Assign the current user to the order
+        )
+        order.save()
+
+        # Return a JSON response indicating successful order placement
+        return JsonResponse({'message': 'Order placed successfully.'})
+
+    # If the request method is not POST, return a 405 Method Not Allowed response
+    return JsonResponse({'error': 'Method Not Allowed'}, status=405)
+
 
         # ### Add to cart Items. ###
 @csrf_exempt
@@ -141,7 +164,7 @@ def add_to_cart(request):
         return JsonResponse({'success': False, 'error': 'Only POST requests are allowed.'})
 
 
-    # ### Detete sigle item from the cart ###
+    # ### Detete single item from the cart ###
 from django.shortcuts import get_object_or_404  
 def delete_from_cart(request, item_id):
     item = get_object_or_404(Cart, id=item_id)

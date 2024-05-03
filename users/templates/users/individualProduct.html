@@ -43,8 +43,9 @@
       padding: 10px 15px;
       margin-bottom: 50px;
     }
+
     .buy_btnn:hover,
-    .addCart:hover{
+    .addCart:hover {
       background-color: white;
       border: 1px solid #DA0037;
       color: #DA0037;
@@ -141,15 +142,15 @@
         </div>
         <div>
           <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png' %} class="user-logo"
-              alt="user"/></a>
+              alt="user" /></a>
         </div>
 
         <div>
-          <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart"/>
+          <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
         </div>
         <script>
-          document.getElementById('cart_icon').addEventListener('click',(()=>{
-            window.location.href='/addCart'
+          document.getElementById('cart_icon').addEventListener('click', (() => {
+            window.location.href = '/addCart'
           }))
         </script>
 
@@ -167,13 +168,27 @@
         <div class="product-text">{{ product.LDescription }}</div>
         <p class="product-price">{{ product.Price }}</p>
         <div class="product-text">{{ product.Size }}</div><br>
-        <a href="/addCart"><p class="addCart">Add to Cart</p></a>
-        <a href="{% url 'placeOrder' product.id %}"><p class="buy_btnn">Buy Now</p></a>
+
+        <div class="quantity">
+          <button class="minus">-</button>
+          <input type="text" class="quantity-input" value="1" readonly>
+          <button class="plus">+</button>
+        </div>
+
+        <a href="/addCart">
+          <p class="addCart">Add to Cart</p>
+        </a>
+        <a href="{% url 'placeOrder' product.id %}">
+          <p class="buy_btnn">Buy Now</p>
+        </a>
         </a>
       </div>
       <img src="{{ product.Image.url }}" class="productImage" alt="{{ product.Sari_Name }}">
     </div>
   </div>
+
+
+  
 
   <footer id="footer" role="contentinfo">
     <div class="footer-wrapper">
@@ -239,49 +254,72 @@
 
   <script src={% static "script.js" %}></script>
 
-<!-- Add this script tag in your HTML file -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
       const addCartButtons = document.querySelectorAll('.addCart');
-      addCartButtons.forEach(button => {
-          button.addEventListener('click', function(event) {
-              event.preventDefault();
-              const productContainer = event.target.closest('.Product-data');
-              const productName = productContainer.querySelector('.product-text2').textContent;
-              const description = productContainer.querySelector('.product-text').textContent;
-              const price = (productContainer.querySelector('.product-price').textContent);
-              const size = productContainer.querySelector('.product-text').textContent;
-              const image = productContainer.querySelector('.productImage').src;
-
-              const formData = new FormData();
-              formData.append('product_name', productName);
-              formData.append('description', description);
-              formData.append('price', price);
-              formData.append('size', size);
-              formData.append('image', image);
-
-              fetch('/add_to_cart/', {
-                  method: 'POST',
-                  body: formData,
-                  headers: {
-                      'X-CSRFToken': '{{ csrf_token }}'
-                  }
-              })
-              .then(response => {
-                  if (response.ok) {
-                      console.log('Product added to cart successfully.');
-                      window.alert('Add to Cart successfully')
-                  } else {
-                      console.error('Failed to add product to cart.');
-                  }
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-              });
-          });
+      const quantityInputs = document.querySelectorAll('.quantity-input');
+  
+      // Quantity buttons functionality
+      quantityInputs.forEach(input => {
+        const minusButton = input.parentElement.querySelector('.minus');
+        const plusButton = input.parentElement.querySelector('.plus');
+  
+        minusButton.addEventListener('click', function () {
+          const currentValue = parseInt(input.value);
+          if (currentValue > 1) {
+            input.value = currentValue - 1;
+          }
+        });
+  
+        plusButton.addEventListener('click', function () {
+          const currentValue = parseInt(input.value);
+          input.value = currentValue + 1;
+        });
       });
-  });
-</script>
+  
+      // Add to cart functionality
+      addCartButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          const productContainer = event.target.closest('.Product-data');
+          const productName = productContainer.querySelector('.product-text2').textContent;
+          const description = productContainer.querySelector('.product-text').textContent;
+          const price = (productContainer.querySelector('.product-price').textContent);
+          const size = productContainer.querySelector('.product-text').textContent;
+          const image = productContainer.querySelector('.productImage').src;
+  
+          const formData = new FormData();
+          formData.append('product_name', productName);
+          formData.append('description', description);
+          formData.append('price', price);
+          formData.append('size', size);
+          formData.append('image', image);
+  
+          fetch('/add_to_cart/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-CSRFToken': '{{ csrf_token }}'
+            }
+          })
+            .then(response => {
+              if (response.ok) {
+                console.log('Product added to cart successfully.');
+                window.alert('Add to Cart successfully')
+              } else {
+                console.error('Failed to add product to cart.');
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        });
+      });
+    });
+  
+  </script>
+  
 
 
 

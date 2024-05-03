@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from . import views
+from .import views
 from django.contrib.auth import views as auth
 
 urlpatterns = [
@@ -15,6 +15,8 @@ urlpatterns = [
     path('delete_product/<int:product_id>/', views.delete_product, name='delete_product'),
     path('allusers/', views.Allusers, name='allusers'),
     path('delete_user/<int:user_id>/', views.delete_user, name='delete_user'),
+    path('delete_order/<int:order_id>/', views.delete_order, name='delete_order'),
     path('settings/', views.Settings, name='settings'),
+    path('adminCart/', views.AdminCart, name='adminCart'),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

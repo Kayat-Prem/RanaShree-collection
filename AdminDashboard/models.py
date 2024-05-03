@@ -12,7 +12,6 @@ class productsModel(models.Model):
     Price = models.TextField()
     LDescription = models.TextField()
     Size = models.TextField()
-    # user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
 
 class Cart(models.Model):
@@ -23,3 +22,15 @@ class Cart(models.Model):
     size = models.CharField(max_length=50)
     quantity = models.IntegerField(default=1)
     image = models.ImageField(upload_to='product_images/')
+
+
+class Order(models.Model):
+    sari_name = models.CharField(max_length=100)
+    description = models.TextField()
+    price = models.CharField(max_length=100)
+    size = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='product_images/')
+    full_name = models.CharField(max_length=100)
+    address = models.TextField()
+    number = models.CharField(max_length=20)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

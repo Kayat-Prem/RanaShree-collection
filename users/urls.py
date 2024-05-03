@@ -17,7 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from . import views
+from .import views
 from django.contrib.auth import views as auth
 
 urlpatterns = [
@@ -44,6 +44,6 @@ urlpatterns = [
     path("addCart/", views.addCart, name='addCart'),
     path('add_to_cart/',views.add_to_cart,name='add_to_cart'),
     path('delete-from-cart/<int:item_id>/', views.delete_from_cart, name='delete_from_cart'),
-    
     path("placeOrder/<int:id>", views.placeOrder, name='placeOrder'),
+    path('place_order/',views.place_order, name='placeOrders'),
 ] 

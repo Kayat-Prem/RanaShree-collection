@@ -8,3 +8,5 @@ class CustomUserAdmin(admin.ModelAdmin):
     exclude=['password','email_token']
 admin.site.register(CustomUser, CustomUserAdmin)
 
+
+

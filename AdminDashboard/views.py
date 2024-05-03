@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login
 from users.models import CustomUser
 from django.contrib.auth.decorators import login_required
-from .models import productsModel
+from .models import productsModel, Cart, Order
 from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
 from django.contrib.auth.models import User
@@ -94,9 +94,25 @@ def delete_user(request, user_id):
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
     
+def AdminCart(request):
+    cart_items = Cart.objects.all()
+    return render(request, "adminCart.html", {'cart_items': cart_items})
 
 def Allorders(request):
-    return render(request, 'allorders.html')
+    orders = Order.objects.all()
+    context = {'orders': orders}
+    return render(request, 'allorders.html', context)
+
+def delete_order(request, order_id):
+    if request.method == 'POST':
+        try:
+            order = Order.objects.get(id=order_id)
+            order.delete()
+            return JsonResponse({'success': True})
+        except Order.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Order does not exist'}, status=404)
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
 
 
 def Settings(request):
