@@ -1,0 +1,557 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+
+
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+    <style>
+        .whole-whole {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 5px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            padding: 80px 150px;
+            gap: 180px;
+            margin-top: -120px;
+        }
+        .cart-heading {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 2em;
+            background-color: whitesmoke;
+        }
+
+        .cart-container {
+            border-radius: 5px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+
+        .cart-container:hover {
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-image {
+            width: 100%;
+            height: 30vh;
+            object-fit: cover;
+        }
+
+        .cart-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cart-details h2 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .cart-details p {
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .cart-details p strong {
+            font-weight: bold;
+        }
+
+        .jacket_price {
+            color: #e74c3c;
+        }
+
+
+        /* ### Add Address ### */
+        #id_full_name,
+        #id_number,
+        #id_address,
+        #Size,
+        .add-product {
+            width: 350px;
+            height: 35px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .send-data {
+            width: 100%;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .send-data div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 15px 30px;
+        }
+
+        .add-product {
+            width: 350px;
+            height: auto;
+            padding: 10px;
+            background-color: #DA0030;
+            color: #fff;
+            border-radius: 5px;
+            border: 1px solid #DA0037;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 25px;
+        }
+
+        .add-product:hover {
+            background-color: white;
+            border: 1px solid #DA0037;
+            color: #DA0037;
+        }
+
+        .delete {
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .delete img {
+            width: 25px;
+            height: auto;
+            position: absolute;
+            margin: -30px 0 0 220px;
+            cursor: pointer;
+        }
+
+        #payment-button {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <header id="header">
+        <nav class="navbar">
+            <a class="logo" href="">Ranashree.</a>
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+
+                <!--### The dropdown container ###-->
+                <div class="dropdown">
+                    <li>
+                        <p class="dropbtn">Pages <i class="fas fa-caret-down"></i></p>
+                    </li>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                            <li><a href="/refund">Refund</a></li>
+                            <li><a href="/products">Products</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <li><a href="/testimonial">Testimonial</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+
+            <div class="header-logo">
+
+                <div class="search">
+                    <div class="icon"></div>
+                    <div class="input">
+                        <input type="text" name="input" id="mysearch" placeholder="Search" required autocomplete="off"
+                            oninput="handleSearchInput()" />
+                    </div>
+                    <span class="clear" onclick="clearSearch()"></span>
+
+                </div>
+                <div>
+                    <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png' %}
+                            class="user-logo" alt="user" /></a>
+                </div>
+
+                <div>
+                    <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
+                </div>
+                <script>
+                    document.getElementById('cart_icon').addEventListener('click', (() => {
+                        window.location.href = '/addCart'
+                    }))
+                </script>
+
+            </div>
+        </nav>
+    </header>
+
+
+    <br><br><br><br><br>
+    <h1 class="cart-heading">
+        <center>" Your Order "</center>
+    </h1>
+    <section class="section">
+        <div class="whole-whole">
+    
+            <div class="cart-container">
+    
+                <img src="{{ product.Image.url }}" alt="{{ product.Sari_Name }}" class="cart-image" id="imaged"
+                    name="image">
+                <div class="cart-details">
+                    <!-- <input id="product_id" type="hidden" value="{{ product.id }}" > -->
+                    <h2 id="id_name">{{ product.Sari_Name }}</h2>
+                    <p><strong>Description:</strong><span id="id_description">{{ product.Description }}</span></p>
+                    <p><strong>Price: </strong><span class="sari_price" id="priceofsari" style="color:#DA0030">Rs. {{ product.Price }}</span></p>
+                    <p><strong>Size:</strong> <span clas="id_size" id="size"> {{ product.Size }}</span></p>
+    
+                    <div class="quantity" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <button class="minus" style="height: 25px; width: 30px">-</button>
+                        <input id="quant" type="text" class="quantity-input" value="1"
+                            style="height: 25px; width: 100px; padding-left: 30px;" readonly>
+                        <button class="plus" style="height: 25px; width: 30px">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div>
+                <!-- style="display: flex; flex-direction: column; align-items: center; justify-content: space-around; padding: 20px; background: whitesmoke; max-width: 100%;"> -->
+                <h2>Delivery Charge = Rs. 100</h2>
+                <div style="display: flex; margin: 20px 0px 0px 0px;">
+                    <!-- style="display: flex; align-items: center; justify-content: center; gap: 3%; width: 50%; margin-top: 20px;"> -->
+                    <h1> Total Price </h1>
+                    <h1> = </h1>
+                    <h1 id="total_price"> </h1>
+                </div>
+    
+                    <br><br>
+                    <form id="orderForm" onsubmit="placeOrder(event)" enctype="multipart/form-data">
+                        <div class="send-data">
+                            <div>
+                                <label>Full Name:</label>
+                                <input type="text" id="id_full_name" name="full_name" required>
+                            </div>
+                            <div>
+                                <label>Address:</label>
+                                <input type="text" id="id_address" name="address" required>
+                            </div>
+                            <div>
+                                <label>Number:</label>
+                                <input type="text" id="id_number" name="number" required>
+                            </div>
+                            <button type="submit" class="add-product" id="place-order">Place Order</button>
+                            <!-- <button id="payment-button" class="add-product">Pay with Khalti</button> -->
+                            <button id="payment-button" type="submit" class="add-product">Pay with Khalti</button>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer id="footer" role="contentinfo">
+        <div class="footer-wrapper">
+            <div class="con-container">
+                <p class="logo2">Ranashree.</p>
+                <p class="footer-bio">Ranashree Sari Collection offers a curated selection of exquisite saris, blending
+                    traditional craftsmanship with contemporary elegance. Embrace the grace of Ranashree – where every
+                    sari tells
+                    a story of heritage and sophistication.</p><br>
+
+                <p style="font-size: 25px;" id="contact">Contact</p><br>
+                <p class="con"><img class="footer-icon1" src={% static "home/images/icons/call.png" %} /> +977
+                    9873748380</p>
+                <p class="con"><img class="footer-icon1" src={% static "home/images/icons/email.png" %} />
+                    ranashree@gmail.com
+                </p>
+                <p class="con"><img class="footer-icon1" src={% static "home/images/icons/location.png" %} />
+                    Chakrapath,
+                    Kathmandu, Nepal</p>
+            </div>
+
+            <div class="useful">
+                <p style="font-size: 25px;">Useful Links</p><br>
+                <p><a href="">Home</a></p>
+                <p><a href="about">About</a></p>
+                <p><a href="blog">Blog</a></p>
+                <p><a href="#faq">FAQ</a></p>
+                <p><a href="products">Products</a></p>
+                <p><a href="contact">Contact Us</a></p>
+                <p><a href="RefundPolicy">Return Policy</a></p>
+            </div>
+
+            <div class="social">
+                <p style="font-size: 25px;">Connect with us</p>
+                <a href="www.facebook.com"><img class="footer-icon" src={% static "home/images/icons/facebook.png"%} /></a>
+                <a href="www.instagram.com"><img class="footer-icon" src={% static "home/images/icons/instagram.png"%} /></a>
+                <a href="www.youtube.com"><img class="footer-icon" src={% static "home/images/icons/youtube.png"%} /></a>
+                <a href="www.tiktok.com"><img class="footer-icon" src={% static "home/images/icons/tik-tok.png"%} /></a>
+
+                <p>
+                <p style="font-size: 25px;">Payment Methods</p>
+                <img class="footer-icon3" src={% static "home/images/icons/khalti.png" %} />
+                </p>
+                <p style="font-size: 25px;">Happy Shopping</p>
+
+            </div>
+        </div>
+
+        <br><br>
+
+
+    </footer>
+
+    <script>
+        // ############# Total Price Calculate #############
+        document.addEventListener('DOMContentLoaded', function () {
+            let cartImages = document.querySelectorAll('.cart-image');
+            // Loop through each image and fix the src attribute
+            cartImages.forEach(image => {
+                let originalSrc = image.getAttribute('src');
+                console.log(originalSrc);
+                console.log('Sari Image');
+                let parts = originalSrc.split("/");
+                let lastThreeWords = parts.slice(-3).join("/");
+                lastThreeWords = '/' + lastThreeWords;
+                image.setAttribute('src', lastThreeWords);
+            });
+        });
+
+        let prices = document.getElementById("priceofsari").textContent;
+        
+        // Extract the numerical value from the prices string
+        let priceString = prices.trim(); // Remove leading/trailing spaces
+        let priceNumber = parseFloat(priceString.replace(/\D+/g, ''), 10); // Extract digits only
+        let deliveryCharge = 100;
+        let totalPrice = priceNumber + deliveryCharge;
+        document.getElementById('total_price').textContent = "Rs. " + totalPrice;
+        console.log(totalPrice);
+
+        // ############## Quantity ############
+        document.addEventListener('DOMContentLoaded', function () {
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+
+            // Quantity buttons functionality
+            quantityInputs.forEach(input => {
+                const minusButton = input.parentElement.querySelector('.minus');
+                const plusButton = input.parentElement.querySelector('.plus');
+
+                minusButton.addEventListener('click', function () {
+                    const currentValue = parseInt(input.value);
+                    if (currentValue > 1) {
+                        input.value = currentValue - 1;
+                        updateTotalPrice(-priceNumber); 
+                    }
+                });
+
+                plusButton.addEventListener('click', function () {
+                    const currentValue = parseInt(input.value);
+                    input.value = currentValue + 1;
+                    updateTotalPrice(priceNumber); 
+                });
+            });
+
+            // Function to update total price dynamically
+            function updateTotalPrice(amount) {
+                let totalPriceElement = document.getElementById('total_price');
+                let currentTotal = parseInt(totalPriceElement.textContent.replace(/\D+/g, ''), 10);
+                let newTotal = currentTotal + amount;
+                totalPriceElement.textContent = "Rs. " + newTotal;
+                console.log(newTotal);
+            }
+        });
+
+
+
+        // ########### Place Order #############
+        function placeOrder(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form input values
+            let sariName = document.getElementById('id_name').textContent;
+            let description = document.getElementById('id_description').textContent;
+            let totalPriceString = document.getElementById('total_price').textContent.trim();
+            let size = document.getElementById('size').textContent;
+            let imageFile = document.getElementById('imaged').src;
+            let fullName = document.getElementById('id_full_name').value;
+            let address = document.getElementById('id_address').value;
+            let number = document.getElementById('id_number').value;
+            let quantity=document.getElementById("quant").value
+
+            // Convert totalPriceString to a decimal
+            let priceString = document.getElementById("priceofsari").textContent.trim();
+            let priceNumber = parseFloat(priceString.replace(/\D+/g, ''), 10);
+            
+            let newTotal = (((priceNumber) * quantity)+100); // Calculate newTotal based on quantity
+            console.log(newTotal);
+            console.log('aee',imageFile)
+            // Create a FormData object to send form data to the server
+            let formData = new FormData();
+            formData.append('sari_name', sariName);
+            formData.append('description', description);
+            formData.append('total_price', newTotal);
+            formData.append('size', size);
+            formData.append('image', imageFile);
+            formData.append('full_name', fullName);
+            formData.append('address', address);
+            formData.append('number', number);
+            formData.append('quantity', quantity);
+
+            // Send form data to the server using fetch API
+            fetch('/place_order/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Order placed successfully!');
+                } else {
+                    alert('Failed to place order. Please try again later.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while placing the order.');
+            });
+        }
+    </script>
+
+
+<script src={% static "script.js" %}></script>
+
+<script>
+    console.log(new Date());
+     console.log("sdjhbfdshjnbfkdsnfjkndskjfnkdjsnfkjdsnkj",{{ product.id }});
+    var config = {
+        // replace the publicKey with yours
+        "publicKey": "test_public_key_1d29be495c2d4fbfaf7f66e1140661c3",
+        "productIdentity": "1234567890",
+        "productName": "Dragon",
+        "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+        "paymentPreference": [
+            "KHALTI",
+            "EBANKING",
+            "MOBILE_BANKING",
+            "CONNECT_IPS",
+            "SCT",
+            ],
+        "eventHandler": {
+             onSuccess(payload) {
+                console.log("payload:", payload)
+                const product_id = {{ product.id }};
+
+                mydate = new Date();
+                const year = mydate.getFullYear();
+                const month = mydate.getMonth() + 1; // Note: January is 0, so add 1 to get the actual month number
+                const day = mydate.getDate();
+                const hours = mydate.getHours();
+                const minutes = mydate.getMinutes();
+                
+
+                const yearString = year.toString();
+                const monthString = month < 10 ? '0' + month.toString() : month.toString();
+                const dayString = day < 10 ? '0' + day.toString() : day.toString();
+                const hoursString = hours < 10 ? '0' + hours.toString() : hours.toString();
+                const minutesString = minutes < 10 ? '0' + minutes.toString() : minutes.toString();
+
+                // Concatenate the components with appropriate separators
+                const bookingDate = `${yearString}-${monthString}-${dayString}`;
+                const bookingTime = `${hoursString}:${minutesString}`;
+
+                const productname = document.getElementById("id_name").textContent;
+                const phone = document.getElementById("id_number").value;
+
+                // hit merchant api for initiating verfication
+                const data = {
+                    product_id: product_id,
+                    date: bookingDate,
+                    time: bookingTime,
+                    name: productname,
+                    phone: phone,
+                };
+
+                // Combine payload and additional data into a single object
+                const body = {
+                    ...payload,
+                    ...data
+                };
+
+                console.log("stringify", JSON.stringify(body));
+
+                 fetch("{% url 'verify_payment' %}", {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                    
+                })
+                    .then(response => response.json())
+                    
+              .then(data => {
+                  console.log(data);
+                  if (data.status) {
+                      
+                      console.log('heloooooooooooooo')
+                      // Open Bootstrap modal
+                          window.location.href = '/products';
+                        
+                  }
+              })
+            },
+            onError (error) {
+                console.log(error);
+            },
+            onClose () {
+                console.log('widget is closing');
+            }
+        }
+    };
+
+    
+    var checkout = new KhaltiCheckout(config);
+    var btn = document.getElementById("payment-button");
+    btn.onclick = function (e) {
+        e.preventDefault();
+        // minimum transaction amount must be 10, i.e 1000 in paisa.
+        checkout.show({amount: 1000});
+    }
+</script>
+
+
+<script>
+    document.getElementById('place-order').addEventListener('click', function () {
+      this.style.display = 'none';
+
+      setTimeout(function () {
+        document.getElementById('payment-button').style.display = 'block';
+      }, 3000);
+    });
+  </script>
+</body>
+
+</html>

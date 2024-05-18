@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+/* ### Products ### */
+#id_name,
+#id_price,
+#id_description,
+#id_ldescription,
+#id_size,
+#id_image,
+.add-product {
+    width: 300px;
+    height: 35px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 8%;
+    margin-bottom: 2%;
+}
+
+.send-data {
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; 
+}
+
+.send-data div {
+    display: flex;
+    flex-direction: column;
+}
+
+  
+  .add-product {
+    width: 300px;
+    padding: 10px;
+    background-color: #DA0030;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 105%;
+  }
+  
+  .add-product:hover {
+    background-color: darkred;
+  }
+  
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.header_fixed {
+    max-height: 100vh;
+    width: 90%;
+    overflow: auto;
+    border: 1px solid #dddddd;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.header_fixed thead th {
+    position: sticky;
+    top: 0;
+    background-color: #DA0030;
+    color: #e6e7e8;
+    font-size: 15px;
+}
+
+th,
+td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+td img {
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    border: 5px solid #e6e7e8;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+    background-color: #edeef1;
+}
+
+tr:hover td{
+    color: #DA0030;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.action-icon{
+    color: #DA0030;
+    margin-left: 5px;
+    font-size: 18px;
+}

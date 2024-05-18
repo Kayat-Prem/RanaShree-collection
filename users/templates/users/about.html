@@ -1,0 +1,242 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    .same{
+      text-align: center;
+      margin: 20px;
+    }
+
+    .whole-about{
+      width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
+
+  <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+</head>
+
+<body>
+  <header id="header">
+    <nav class="navbar">
+      <a class="logo" href="#logo">Ranashree.</a>
+      <ul>
+        <li><a href="/" class="active">Home</a></li>
+
+        <!--### The dropdown container ###-->
+        <div class="dropdown">
+          <li>
+            <p class="dropbtn">Pages <i class="fas fa-caret-down"></i></p>
+          </li>
+          <div class="dropdown-content">
+            <ul>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/refund">Refund</a></li>
+              <li><a href="/products">Products</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <li><a href="/testimonial">Testimonial</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+
+      <div class="header-logo">
+
+        <div class="search">
+          <div class="icon"></div>
+          <div class="input">
+            <input type="text" name="input" id="mysearch" placeholder="Search" required autocomplete="off"
+              oninput="handleSearchInput()" />
+          </div>
+          <span class="clear" onclick="clearSearch()"></span>
+        </div>
+
+        <div>
+          <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png' %} class="user-logo"
+              alt="user" /></a>
+        </div>
+
+        <div>
+          <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart"/>
+        </div>
+        <script>
+          document.getElementById('cart_icon').addEventListener('click',(()=>{
+            window.location.href='/addCart'
+          }))
+        </script>
+
+      </div>
+    </nav>
+  </header>
+
+  <br><br><br><br><br>
+  <h2 class="same">About Us</h2>
+  <div class="whole-about">
+    <p>
+      Welcome to the exquisite world of Ranashree Collection, where tradition meets elegance in every weave. Born out of
+      a
+      passion for preserving and celebrating the timeless beauty of the saree, Ranashree Collection is a curated
+      assemblage of handpicked sarees that embody grace, sophistication, and the rich cultural heritage of Nepal.
+
+    <h3 class="same">Our Vision:</h3>
+    At Ranashree Collection, we envision weaving stories of grace and tradition through our meticulously curated saree
+    collection. Each saree is a testament to the artistry and craftsmanship that has been passed down through
+    generations,
+    promising to add a touch of timeless charm to every woman's wardrobe.
+
+    <h3 class="same">Craftsmanship Unveiled:</h3>
+    Our sarees showcase the artistry of skilled craftsmen, weaving tales of tradition and innovation into each intricate
+    pattern and design. From the classic Banarasis to the vibrant Kanjeevarams, every piece at Ranashree Collection is a
+    masterpiece that reflects the diversity of Nepalese culture.
+
+    <h3 class="same">Curated Elegance:</h3>
+    Ranashree Collection takes pride in offering a carefully curated selection of sarees, ensuring that each piece tells
+    a
+    unique story of art, culture, and heritage. Whether you're looking for a saree for a special occasion or a timeless
+    piece for your collection, we invite you to explore the beauty and craftsmanship woven into every thread.
+
+    <h3 class="same">A Celebration of Womanhood:</h3>
+    We believe that every woman is a story waiting to be told, and our sarees are here to be the canvas. Ranashree
+    Collection celebrates the strength, grace, and individuality of women by offering a diverse range of sarees that
+    complement every personality and style.
+
+    <h3 class="same">Join the Journey:</h3>
+    Embark on a journey through the rich tapestry of Nepali textiles with Ranashree Collection. Discover the allure of
+    tradition and the magic of timeless sarees that transcend generations. Your story, beautifully woven in every drape.
+    </p>
+  </div>
+
+  <h2 class="heads">What's our Customer say</h2>
+  <section class="testi-container">
+    <div class="testimonial swiper-container mySwiper" id="testimonial">
+      <div class="testi-content swiper-wrapper">
+        <div class="slide2 swiper-slide">
+          <img src={% static "home/images/people/per10.png" %} alt="person" class="person" />
+          <p>
+            Indulge in elegance with stunning Ranashree sari collection. Each piece exudes timeless charm and exquisite craftsmanship, elevating your style to new heights with every drape.
+          </p>
+
+          <i class='bx bxs-quote-alt-left quote-icon'></i>
+
+          <div class="details">
+            <span class="name">Shristy Bhusal</span>
+            <span class="job">Developer</span>
+
+          </div>
+
+        </div>
+
+        <div class="slide2 swiper-slide">
+          <img src={% static "home/images/people/per2.jpg" %} alt="person" class="person" />
+          <p>
+            Ranashree sari collection embodies grace and luxury, adding an exquisite touch to any occasion. Each sari reflects impeccable craftsmanship and timeless beauty, making it a must-have in every wardrobe.
+          </p>
+
+          <i class='bx bxs-quote-alt-left quote-icon'></i>
+
+          <div class="details">
+            <span class="name">Niti Shah</span>
+            <span class="job">Miss Nepal</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+
+    </div>
+
+  </section>
+
+  <br><br>
+  <footer id="footer" role="contentinfo">
+    <div class="footer-wrapper">
+      <div class="con-container">
+        <p class="logo2">Ranashree.</p>
+        <p class="footer-bio">Ranashree Sari Collection offers a curated selection of exquisite saris, blending
+          traditional craftsmanship with contemporary elegance. Embrace the grace of Ranashree – where every sari tells
+          a story of heritage and sophistication.</p><br>
+
+        <p style="font-size: 25px;" id="contact">Contact</p><br>
+        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/call.png" %} /> +977 9873748380</p>
+        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/email.png" %} /> ranashree@gmail.com
+        </p>
+        <p class="con"><img class="footer-icon1" src={% static "home/images/icons/location.png" %} /> Chakrapath,
+          Kathmandu, Nepal</p>
+      </div>
+
+      <div class="useful">
+        <p style="font-size: 25px;">Useful Links</p><br>
+        <p><a href="/">Home</a></p>
+        <p><a href="/about">About</a></p>
+        <p><a href="/blog">Blog</a></p>
+        <p><a href="/faq">FAQ</a></p>
+        <p><a href="/products">Products</a></p>
+        <p><a href="/contact">Contact Us</a></p>
+        <p><a href="/refund">Return Policy</a></p>
+      </div>
+
+      <div class="social">
+        <p style="font-size: 25px;">Connect with us</p>
+        <a href="www.facebook.com"><img class="footer-icon" src={% static "home/images/icons/facebook.png" %} /></a>
+        <a href="www.instagram.com"><img class="footer-icon" src={% static "home/images/icons/instagram.png" %} /></a>
+        <a href="www.youtube.com"><img class="footer-icon" src={% static "home/images/icons/youtube.png" %} /></a>
+        <a href="www.tiktok.com"><img class="footer-icon" src={% static "home/images/icons/tik-tok.png" %} /></a>
+
+        <p>
+        <p style="font-size: 25px;">Payment Methods</p>
+        <img class="footer-icon3" src={% static "home/images/icons/khalti.png" %} />
+        </p>
+        <p style="font-size: 25px;">Happy Shopping</p>
+
+      </div>
+    </div>
+
+
+  </footer>
+
+  <p class="copy">
+    <center>
+      Copyright &copy;
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      All rights reserved | Ranashree Collection <a href="/PrivacyPolicy"><b>Privacy Policy</b></a>
+    </center>
+  </p><br>
+
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src={% static "testimonial.js" %}></script>
+
+  <script src={% static "script.js" %}></script>
+
+</body>
+
+</html>

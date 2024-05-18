@@ -1,0 +1,484 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cart-heading {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 2em;
+            background-color: whitesmoke;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        .cart-container {
+            border-radius: 5px;
+            margin: 10px;
+            width: calc(33% - 20px);
+            /* Adjust based on desired number of items per row */
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-container:hover {
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-image {
+            width: 100%;
+            height: 30vh;
+            object-fit: cover;
+        }
+
+        .cart-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cart-details h2 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .cart-details p {
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .cart-details p strong {
+            font-weight: bold;
+        }
+
+        .sari_price {
+            color: #e74c3c;
+        }
+
+
+        /* ### Add Address ### */
+        #id_name,
+        #id_description,
+        #id_number,
+        .add-product {
+            width: 300px;
+            height: 35px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: -18%;
+            margin-bottom: -15%;
+        }
+
+        .send-data {
+            width: 100%;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .send-data div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 15px 30px;
+        }
+
+        .add-product {
+            width: 300px;
+            height: auto;
+            padding: 10px;
+            background-color: #DA0030;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 105%;
+            font-size: 25px;
+        }
+
+        .add-product:hover {
+            background-color: darkred;
+        }
+
+        .delete {
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .delete img {
+            width: 25px;
+            height: auto;
+            position: absolute;
+            margin: -50px 0 0 220px;
+            cursor: pointer;
+        }
+
+        .new {
+            background-color: #DA0030;
+            color: white;
+            border: 1px solid #da0030;
+            border-radius: 5px;
+            padding: 3px 2px;
+            width: 80px;
+            height: auto;
+            font-size: 16px;
+            position: absolute;
+            margin: -250px 0px 0px 200px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header id="header">
+        <nav class="navbar">
+            <a class="logo" href="">Ranashree.</a>
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+
+                <!--### The dropdown container ###-->
+                <div class="dropdown">
+                    <li>
+                        <p class="dropbtn">Pages <i class="fas fa-caret-down"></i></p>
+                    </li>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                            <li><a href="/refund">Refund</a></li>
+                            <li><a href="/products">Products</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <li><a href="/testimonial">Testimonial</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+
+            <div class="header-logo">
+
+                <div class="search">
+                    <div class="icon"></div>
+                    <div class="input">
+                        <input type="text" name="input" id="mysearch" placeholder="Search" required autocomplete="off"
+                            oninput="handleSearchInput()" />
+                    </div>
+                    <span class="clear" onclick="clearSearch()"></span>
+
+                </div>
+                <div>
+                    <a href="{% url 'login' %}"><img src={% static 'home/images/icons/user-profile.png' %}
+                            class="user-logo" alt="user" /></a>
+                </div>
+
+                <div>
+                    <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
+                </div>
+                <script>
+                    document.getElementById('cart_icon').addEventListener('click', (() => {
+                        window.location.href = '/addCart'
+                    }))
+                </script>
+
+            </div>
+        </nav>
+    </header>
+
+
+    <br><br><br><br><br>
+    <h1 class="cart-heading">
+        <center>" Your Cart "</center>
+    </h1>
+    <div class="cart-items">
+        {% for item in cart_items %}
+        <div class="cart-container">
+
+            <img src="{{ item.image.url }}" alt="{{ item.product_name }}" class="cart-image">
+            <div class="cart-details">
+                <button class="new">NEW</button>
+                <br>
+                <h2>{{ item.product_name }}</h2>
+                <p><strong>Description:</strong> {{ item.description }}</p>
+                <p><strong>Price: Rs.</strong><span class="sari_price" id="priceofsari">{{ item.price }}</span></p>
+                <p><strong>Size:</strong> {{ item.size }}</p>
+
+                <div class="quantity" style="margin: 10px 0px -10px 0px">
+                    <button class="minus" style="height: 20px; width: 30px">-</button>
+                    <input type="text" class="quantity-input" value="1" style="height: 0px; width: 100px;" readonly>
+                    <button class="plus" style="height: 20px; width: 30px">+</button>
+                </div>
+            </div>
+
+            <form action="{% url 'delete_from_cart' item.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="delete">
+                    <img src="{% static 'home/images/icons/bin.png' %}" alt="deleteItem">
+                </button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div
+        style="display: flex; flex-direction: column; align-items: center; justify-content: space-around; padding: 20px; background: whitesmoke; max-width: 100%;">
+        <h2>Delivery Charge = Rs. 100</h2>
+        <div
+            style="display: flex; align-items: center; justify-content: center; gap: 3%; width: 50%; margin-top: 20px;">
+            <h1>Total Price </h1>
+            <h1>=</h1>
+            <h1 id="total_price"></h1>
+        </div>
+    </div>
+
+
+
+    <section class="section">
+        <form action="">
+            <div class="send-data">
+                <div>
+                    <label>Full Name:</label>
+                    <input type="text" id="id_name" name="full_Name" required>
+                </div>
+
+                <div>
+                    <label>Address:</label>
+                    <input type="text" id="id_description" name="Description" required>
+                </div>
+
+                <div>
+                    <label>Number:</label>
+                    <input type="text" id="id_number" name="Price" required>
+                </div>
+
+                <center><button type="submit" class="add-product">Place Order</button></center>
+            </div>
+        </form>
+    </section>
+
+
+    <footer id="footer" role="contentinfo">
+        <div class="footer-wrapper">
+            <div class="con-container">
+                <p class="logo2">Ranashree.</p>
+                <p class="footer-bio">Ranashree Sari Collection offers a curated selection of exquisite saris, blending
+                    traditional craftsmanship with contemporary elegance. Embrace the grace of Ranashree – where every
+                    sari tells
+                    a story of heritage and sophistication.</p><br>
+
+                <p style="font-size: 25px;" id="contact">Contact</p><br>
+                <p class="con"><img class="footer-icon1" src={% static "home/images/icons/call.png" %} /> +977
+                    9873748380</p>
+                <p class="con"><img class="footer-icon1" src={% static "home/images/icons/email.png" %} />
+                    ranashree@gmail.com
+                </p>
+                <p class="con"><img class="footer-icon1" src={% static "home/images/icons/location.png" %} />
+                    Chakrapath,
+                    Kathmandu, Nepal</p>
+            </div>
+
+            <div class="useful">
+                <p style="font-size: 25px;">Useful Links</p><br>
+                <p><a href="/">Home</a></p>
+                <p><a href="/about">About</a></p>
+                <p><a href="/blog">Blog</a></p>
+                <p><a href="/faq">FAQ</a></p>
+                <p><a href="/products">Products</a></p>
+                <p><a href="/contact">Contact Us</a></p>
+                <p><a href="/refund">Return Policy</a></p>
+            </div>
+
+            <div class="social">
+                <p style="font-size: 25px;">Connect with us</p>
+                <a href="www.facebook.com"><img class="footer-icon" src={% static "home/images/icons/facebook.png"%} /></a>
+                <a href="www.instagram.com"><img class="footer-icon" src={% static "home/images/icons/instagram.png"%} /></a>
+                <a href="www.youtube.com"><img class="footer-icon" src={% static "home/images/icons/youtube.png"%} /></a>
+                <a href="www.tiktok.com"><img class="footer-icon" src={% static "home/images/icons/tik-tok.png"%} /></a>
+
+                <p>
+                <p style="font-size: 25px;">Payment Methods</p>
+                <img class="footer-icon3" src={% static "home/images/icons/khalti.png" %} />
+                </p>
+                <p style="font-size: 25px;">Happy Shopping</p>
+
+            </div>
+        </div>
+
+        <br><br>
+
+
+    </footer>
+
+    <script>
+        // ############# Total Price Calculate #############
+        document.addEventListener('DOMContentLoaded', function () {
+            let cartImages = document.querySelectorAll('.cart-image');
+            // Loop through each image and fix the src attribute
+            cartImages.forEach(image => {
+                let originalSrc = image.getAttribute('src');
+                console.log(originalSrc);
+                console.log('Sari Image');
+                let parts = originalSrc.split("/");
+                let lastThreeWords = parts.slice(-3).join("/");
+                lastThreeWords = '/' + lastThreeWords;
+                image.setAttribute('src', lastThreeWords);
+            });
+        });
+
+        let prices = document.getElementById("priceofsari").textContent;
+        
+        // Extract the numerical value from the prices string
+        let priceString = prices.trim(); // Remove leading/trailing spaces
+        let priceNumber = parseFloat(priceString.replace(/\D+/g, ''), 10); // Extract digits only
+        let deliveryCharge = 100;
+        let totalPrice = priceNumber + deliveryCharge;
+        document.getElementById('total_price').textContent = "Rs. " + totalPrice;
+        console.log(totalPrice);
+
+        // ############## Quantity ############
+        document.addEventListener('DOMContentLoaded', function () {
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+
+            // Quantity buttons functionality
+            quantityInputs.forEach(input => {
+                const minusButton = input.parentElement.querySelector('.minus');
+                const plusButton = input.parentElement.querySelector('.plus');
+
+                minusButton.addEventListener('click', function () {
+                    const currentValue = parseInt(input.value);
+                    if (currentValue > 1) {
+                        input.value = currentValue - 1;
+                        updateTotalPrice(-priceNumber); 
+                    }
+                });
+
+                plusButton.addEventListener('click', function () {
+                    const currentValue = parseInt(input.value);
+                    input.value = currentValue + 1;
+                    updateTotalPrice(priceNumber); 
+                });
+            });
+
+            // Function to update total price dynamically
+            function updateTotalPrice(amount) {
+                let totalPriceElement = document.getElementById('total_price');
+                let currentTotal = parseInt(totalPriceElement.textContent.replace(/\D+/g, ''), 10);
+                let newTotal = currentTotal + amount;
+                totalPriceElement.textContent = "Rs. " + newTotal;
+                console.log(newTotal);
+            }
+        });
+
+
+
+        // ########### Place Order #############
+        function placeOrder(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form input values
+            let sariName = document.getElementById('id_name').textContent;
+            let description = document.getElementById('id_description').textContent;
+            let totalPriceString = document.getElementById('total_price').textContent.trim();
+            let size = document.getElementById('size').textContent;
+            let imageFile = document.getElementById('imaged').src;
+            let fullName = document.getElementById('id_full_name').value;
+            let address = document.getElementById('id_address').value;
+            let number = document.getElementById('id_number').value;
+
+            // Convert totalPriceString to a decimal
+            let priceString = document.getElementById("priceofsari").textContent.trim();
+            let priceNumber = parseFloat(priceString.replace(/\D+/g, ''), 10);
+            let quantity = parseInt(document.querySelector('.quantity-input').value);
+            let newTotal = (((priceNumber) * quantity)+100); // Calculate newTotal based on quantity
+            console.log(newTotal);
+            console.log('aee',imageFile)
+            // Create a FormData object to send form data to the server
+            let formData = new FormData();
+            formData.append('sari_name', sariName);
+            formData.append('description', description);
+            formData.append('total_price', newTotal);
+            formData.append('size', size);
+            formData.append('image', imageFile);
+            formData.append('full_name', fullName);
+            formData.append('address', address);
+            formData.append('number', number);
+
+            // Send form data to the server using fetch API
+            fetch('/place_order/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Order placed successfully!');
+                } else {
+                    alert('Failed to place order. Please try again later.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while placing the order.');
+            });
+        }
+    </script>
+
+
+    <p class="copy">
+        <center>
+            Copyright &copy;
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+            All rights reserved | Ranashree Collection <a href="/PrivacyPolicy"><b>Privacy Policy</b></a>
+        </center>
+    </p><br>
+
+    <script src={% static "script.js" %}></script>
+</body>
+
+</html>
