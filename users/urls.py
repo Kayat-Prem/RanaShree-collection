@@ -46,8 +46,11 @@ urlpatterns = [
     path('delete-from-cart/<int:item_id>/', views.delete_from_cart, name='delete_from_cart'),
     path("placeOrder/<int:id>", views.placeOrder, name='placeOrder'),
     path('place_order/',views.place_order, name='placeOrders'),
+<<<<<<< HEAD
     path("transaction/<int:id>", views.Transaction, name='transaction'),
     # path('place_order/',views.place_order, name='placeOrders'),
 
     path('api/verify_payment/', views.verify_payment, name='verify_payment'),
+=======
+>>>>>>> origin/main
 ] 

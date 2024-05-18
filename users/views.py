@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 import json
 import uuid
 import requests as requestss
 from django.contrib import admin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+=======
+import uuid
+from django.contrib import admin
+from django.shortcuts import render, redirect, get_object_or_404
+>>>>>>> origin/main
 from .models import CustomUser
 from django.contrib import messages
 from django.contrib.auth import authenticate,login
@@ -14,7 +20,11 @@ from django.http import HttpResponse
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 from AdminDashboard.models import BookingWithKhalti, productsModel
+=======
+from AdminDashboard.models import productsModel
+>>>>>>> origin/main
 
 def LandingPage(request):
         products = productsModel.objects.all()
@@ -47,6 +57,13 @@ def products(request):
     return render(request, "users/products.html", {'products': products})
 
 def individualProducts(request, id):
+<<<<<<< HEAD
+=======
+    product = productsModel.objects.get(id=id)
+    return render(request, "users/individualProduct.html", {'product': product})
+
+def individualProducts(request, id):
+>>>>>>> origin/main
     try:
         product = productsModel.objects.get(id=id)
         print("Sari Product found:", product) 
@@ -54,6 +71,7 @@ def individualProducts(request, id):
         print("Sari Product not found")  
     return render(request, "users/individualProduct.html", {'product': product})
 
+<<<<<<< HEAD
 def individualProducts(request, id):
         product = productsModel.objects.get(id=id)
         return render(request, "users/individualProduct.html", {'product': product})
@@ -85,6 +103,22 @@ def individualProducts(request, id):
 #             reviews = Review.objects.filster(product=product)
 #             return render(request, 'individualProducts/individualProducts.html', {'product': product, 'reviews': reviews, 'comment_form': comment_form, 'item_already_in_cart': item_already_in_cart, 'totalitem': totalitem})
 
+=======
+
+
+
+def addCart(request):
+    if request.user.is_authenticated:
+        cart_items = Cart.objects.filter(user=request.user)
+    else:
+        cart_items = []
+    return render(request, "users/addCart.html", {'cart_items': cart_items})
+
+
+# def placeOrder(request, id):
+#     product = productsModel.objects.get(id=id)
+#     return render(request, "users/placeOrder.html", {'product': product})
+>>>>>>> origin/main
 
 def placeOrder(request, id):
     try:
@@ -110,6 +144,7 @@ def place_order(request):
         user = request.user
         sari_name = request.POST.get('sari_name')
         description = request.POST.get('description')
+<<<<<<< HEAD
         new_total = request.POST.get('total_price')
         size = request.POST.get('size')
         image = request.POST.get('image')
@@ -117,19 +152,35 @@ def place_order(request):
         address = request.POST.get('address')
         number = request.POST.get('number')
         quantity=request.POST.get('quantity')
+=======
+        price = request.POST.get('price')
+        size = request.POST.get('size')
+        image = request.FILES.get('image')  # Use request.FILES to get the image
+        full_name = request.POST.get('full_name')
+        address = request.POST.get('address')
+        number = request.POST.get('number')
+>>>>>>> origin/main
 
         # Create and save the order instance
         order = Order(
             sari_name=sari_name,
             description=description,
+<<<<<<< HEAD
             total_price=new_total,
+=======
+            price=price,
+>>>>>>> origin/main
             size=size,
             image=image,  # Assign the uploaded image
             full_name=full_name,
             address=address,
             number=number,
+<<<<<<< HEAD
             user=user,  # Assign the current user to the order
             quantity=quantity,
+=======
+            user=user  # Assign the current user to the order
+>>>>>>> origin/main
         )
         order.save()
 
@@ -140,6 +191,7 @@ def place_order(request):
     return JsonResponse({'error': 'Method Not Allowed'}, status=405)
 
 
+<<<<<<< HEAD
 def addCart(request):
     if request.user.is_authenticated:
         cart_items = Cart.objects.filter(user=request.user)
@@ -147,6 +199,8 @@ def addCart(request):
         cart_items = []
     return render(request, "users/addCart.html", {'cart_items': cart_items})
 
+=======
+>>>>>>> origin/main
         # ### Add to cart Items. ###
 @csrf_exempt
 def add_to_cart(request):
@@ -197,11 +251,14 @@ def delete_from_cart(request, item_id):
     return redirect('addCart')
 
 
+<<<<<<< HEAD
     
 
 
 
 
+=======
+>>>>>>> origin/main
 
 
 # #### SIGN UP ###
@@ -443,6 +500,7 @@ def inputcontact(request):
     
     return render(request, 'users/inputcontact.html')
 
+<<<<<<< HEAD
 
 
 # ============================================================================ payment =================================================================
@@ -525,3 +583,5 @@ def verify_payment(request):
             'status': False,
             'message': 'Payment verification failed'
         })
+=======
+>>>>>>> origin/main

@@ -11,6 +11,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<<<<<<< HEAD
         <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
 
 
@@ -28,6 +29,16 @@
             gap: 180px;
             margin-top: -120px;
         }
+=======
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+>>>>>>> origin/main
         .cart-heading {
             text-align: center;
             padding: 10px 0;
@@ -35,13 +46,33 @@
             background-color: whitesmoke;
         }
 
+<<<<<<< HEAD
         .cart-container {
             border-radius: 5px;
+=======
+        .cart-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        .cart-container {
+            border-radius: 5px;
+            margin: 10px;
+            width: calc(33% - 20px);
+            /* Adjust based on desired number of items per row */
+>>>>>>> origin/main
             border: 2px solid rgba(0, 0, 0, 0.1);
             padding: 15px;
             display: flex;
             flex-direction: column;
+<<<<<<< HEAD
             width: 300px;
+=======
+>>>>>>> origin/main
         }
 
         .cart-container:hover {
@@ -74,7 +105,11 @@
             font-weight: bold;
         }
 
+<<<<<<< HEAD
         .jacket_price {
+=======
+        .sari_price {
+>>>>>>> origin/main
             color: #e74c3c;
         }
 
@@ -83,22 +118,45 @@
         #id_full_name,
         #id_number,
         #id_address,
+<<<<<<< HEAD
         #Size,
         .add-product {
             width: 350px;
+=======
+        .add-product {
+            width: 300px;
+>>>>>>> origin/main
             height: 35px;
             padding: 10px;
             margin-bottom: 15px;
         }
 
+<<<<<<< HEAD
+=======
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: -18%;
+            margin-bottom: -15%;
+        }
+
+>>>>>>> origin/main
         .send-data {
             width: 100%;
             background-color: #f9f9f9;
             border: 1px solid #ccc;
             padding: 10px;
             border-radius: 8px;
+<<<<<<< HEAD
             display: flex;
             flex-direction: column;
+=======
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+>>>>>>> origin/main
         }
 
         .send-data div {
@@ -111,15 +169,27 @@
         }
 
         .add-product {
+<<<<<<< HEAD
             width: 350px;
+=======
+            width: 300px;
+>>>>>>> origin/main
             height: auto;
             padding: 10px;
             background-color: #DA0030;
             color: #fff;
+<<<<<<< HEAD
             border-radius: 5px;
             border: 1px solid #DA0037;
             cursor: pointer;
             transition: background-color 0.3s ease;
+=======
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 105%;
+>>>>>>> origin/main
             font-size: 25px;
         }
 
@@ -144,10 +214,25 @@
             cursor: pointer;
         }
 
+<<<<<<< HEAD
         #payment-button {
             display: none;
         }
 
+=======
+        .new {
+            background-color: #DA0030;
+            color: white;
+            border: 1px solid #da0030;
+            border-radius: 5px;
+            padding: 3px 2px;
+            width: 80px;
+            height: auto;
+            font-size: 16px;
+            position: absolute;
+            margin: -250px 0px 0px 200px;
+        }
+>>>>>>> origin/main
     </style>
 
 </head>
@@ -198,12 +283,21 @@
 
                 <div>
                     <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
+<<<<<<< HEAD
                 </div>
                 <script>
                     document.getElementById('cart_icon').addEventListener('click', (() => {
                         window.location.href = '/addCart'
                     }))
                 </script>
+=======
+                  </div>
+                  <script>
+                    document.getElementById('cart_icon').addEventListener('click', (() => {
+                      window.location.href = '/addCart'
+                    }))
+                  </script>
+>>>>>>> origin/main
 
             </div>
         </nav>
@@ -214,6 +308,7 @@
     <h1 class="cart-heading">
         <center>" Your Order "</center>
     </h1>
+<<<<<<< HEAD
     <section class="section">
         <div class="whole-whole">
     
@@ -269,6 +364,55 @@
                     </form>
             </div>
         </div>
+=======
+    <div class="cart-items">
+
+        <div class="cart-container">
+
+            <img src="{{ product.Image.url }}" alt="{{ product.Sari_Name }}" class="cart-image" id="image" name="image">
+            <div class="cart-details">
+                <h2 id="id_name">{{ product.Sari_Name }}</h2>
+                <p><strong>Description:</strong><span id="id_description"> {{ product.Description }}</span></p>
+                <p><strong>Price: </strong><span class="sari_price" id="priceofsari">{{ product.Price }}</span></p>
+                <p><strong>Size:</strong> <span clas="id_size" id="size"> {{ product.Size }}</span></p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div
+        style="display: flex; flex-direction: column; align-items: center; justify-content: space-around; padding: 20px; background: whitesmoke; max-width: 100%;">
+        <h2>Delivery Charge = Rs. 100</h2>
+        <div
+            style="display: flex; align-items: center; justify-content: center; gap: 3%; width: 50%; margin-top: 20px;">
+            <h1>Total Price </h1>
+            <h1>=</h1>
+            <h1 id="total_price"></h1>
+        </div>
+    </div>
+
+
+
+    <section class="section">
+        <form id="orderForm" onsubmit="placeOrder(event)" enctype="multipart/form-data">
+            <div class="send-data">
+                <div>
+                    <label>Full Name:</label>
+                    <input type="text" id="id_full_name" name="full_name" required>
+                </div>
+                <div>
+                    <label>Address:</label>
+                    <input type="text" id="id_address" name="address" required>
+                </div>
+                <div>
+                    <label>Number:</label>
+                    <input type="text" id="id_number" name="number" required>
+                </div>
+                <button type="submit" class="add-product">Place Order</button>
+            </div>
+        </form>
+>>>>>>> origin/main
     </section>
 
 
@@ -313,7 +457,11 @@
 
                 <p>
                 <p style="font-size: 25px;">Payment Methods</p>
+<<<<<<< HEAD
                 <img class="footer-icon3" src={% static "home/images/icons/khalti.png" %} />
+=======
+                <img class="footer-icon3" src={% static "home/images/icons/esewa.webp" %} />
+>>>>>>> origin/main
                 </p>
                 <p style="font-size: 25px;">Happy Shopping</p>
 
@@ -326,12 +474,18 @@
     </footer>
 
     <script>
+<<<<<<< HEAD
         // ############# Total Price Calculate #############
         document.addEventListener('DOMContentLoaded', function () {
+=======
+        document.addEventListener('DOMContentLoaded', function () {
+
+>>>>>>> origin/main
             let cartImages = document.querySelectorAll('.cart-image');
             // Loop through each image and fix the src attribute
             cartImages.forEach(image => {
                 let originalSrc = image.getAttribute('src');
+<<<<<<< HEAD
                 console.log(originalSrc);
                 console.log('Sari Image');
                 let parts = originalSrc.split("/");
@@ -388,11 +542,52 @@
 
 
         // ########### Place Order #############
+=======
+                console.log(originalSrc)
+                console.log('Sari Image')
+                let parts = originalSrc.split("/");
+                let lastThreeWords = parts.slice(-3).join("/");
+                lastThreeWords = '/' + lastThreeWords
+                image.setAttribute('src', lastThreeWords)
+            });
+        });
+    </script>
+
+    <p class="copy">
+        <center>
+            Copyright &copy;
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+            All rights reserved | Ranashree Collection <a href="/PrivacyPolicy"><b>Privacy Policy</b></a>
+        </center>
+    </p><br>
+
+    <script src={% static "script.js" %}></script>
+
+
+    <script>
+        let prices = document.getElementById("priceofsari").textContent
+        console.log(prices)
+        // Extract the numerical value from the prices string
+        let priceString = prices.trim(); // Remove leading/trailing spaces
+        let priceNumber = parseInt(priceString.replace(/\D+/g, ''), 10); // Extract digits only
+
+
+        let totalPrice = priceNumber + 100;
+
+        // Update the total price element with the new value
+        document.getElementById('total_price').textContent = "Rs " + totalPrice;
+    </script>
+
+    <script>
+>>>>>>> origin/main
         function placeOrder(event) {
             event.preventDefault(); // Prevent default form submission
 
             // Get form input values
             let sariName = document.getElementById('id_name').textContent;
+<<<<<<< HEAD
             let description = document.getElementById('id_description').textContent;
             let totalPriceString = document.getElementById('total_price').textContent.trim();
             let size = document.getElementById('size').textContent;
@@ -409,10 +604,23 @@
             let newTotal = (((priceNumber) * quantity)+100); // Calculate newTotal based on quantity
             console.log(newTotal);
             console.log('aee',imageFile)
+=======
+            console.log(sariName);
+            console.log(document.getElementById('id_description'))
+            let description = document.getElementById('id_description').textContent;
+            let price = document.getElementById('priceofsari').textContent.trim();
+            let size = document.getElementById('size').textContent;
+            let imageSrc = document.getElementById('image').src;
+            let fullName = document.getElementById('id_full_name').value;
+            let address = document.getElementById('id_address').value;
+            let number = document.getElementById('id_number').value;
+
+>>>>>>> origin/main
             // Create a FormData object to send form data to the server
             let formData = new FormData();
             formData.append('sari_name', sariName);
             formData.append('description', description);
+<<<<<<< HEAD
             formData.append('total_price', newTotal);
             formData.append('size', size);
             formData.append('image', imageFile);
@@ -420,12 +628,21 @@
             formData.append('address', address);
             formData.append('number', number);
             formData.append('quantity', quantity);
+=======
+            formData.append('price', price);
+            formData.append('size', size);
+            formData.append('image', imageSrc);
+            formData.append('full_name', fullName);
+            formData.append('address', address);
+            formData.append('number', number);
+>>>>>>> origin/main
 
             // Send form data to the server using fetch API
             fetch('/place_order/', {
                 method: 'POST',
                 body: formData
             })
+<<<<<<< HEAD
             .then(response => {
                 if (response.ok) {
                     alert('Order placed successfully!');
@@ -552,6 +769,22 @@
       }, 3000);
     });
   </script>
+=======
+                .then(response => {
+                    if (response.ok) {
+                        alert('Order placed successfully!');
+                    } else {
+                        alert('Failed to place order. Please try again later.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while placing the order.');
+                });
+        }
+    </script>
+
+>>>>>>> origin/main
 </body>
 
 </html>

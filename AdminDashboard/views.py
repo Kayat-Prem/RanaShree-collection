@@ -11,7 +11,10 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 def Adminn(request):
     return render(request, 'adminn.html')
 
@@ -115,6 +118,7 @@ def delete_order(request, order_id):
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
 
+<<<<<<< HEAD
 def Transaction(request):
     transactions = Order.objects.all()
     context = {'transaction': transactions}
@@ -131,6 +135,8 @@ def delete_transaction(request, transaction_id):
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
 
+=======
+>>>>>>> origin/main
 
 def Settings(request):
     return render(request, 'settings.html')

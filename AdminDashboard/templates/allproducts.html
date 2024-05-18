@@ -148,7 +148,11 @@
         href="{% url 'settings' %}">Reviews</a></li>
 
     <li><img src="{% static 'home/images/icons/transaction.png' %}" class="side-icon2" alt="transactions" /><a
+<<<<<<< HEAD
           href="{% url 'transaction' %}">Transactions</a></li>
+=======
+        href="{% url 'settings' %}">Transactions</a></li>
+>>>>>>> origin/main
 
     <li><img src="{% static 'home/images/icons/settings.png' %}" class="side-icon2" alt="setting" /><a
         href="{% url 'settings' %}">Settings</a></li>
@@ -223,7 +227,11 @@
             <td>{{ product.Description }}</td>
             <td>{{ product.LDescription }}</td>
             <td>{{ product.Size }}</td>
+<<<<<<< HEAD
             <td>Rs. {{ product.Price }}</td>
+=======
+            <td>{{ product.Price }}</td>
+>>>>>>> origin/main
             <td><img src="{{ product.Image.url }}" class="backend-image" alt="{{ product.Sari_Name }}"></td>
             <td><a href="#" onclick="editProduct('{{ product.id }}')" class="action-icon"><i class="fas fa-edit"></i></a>
               <a href="#" onclick="deleteProduct('{{ product.id }}')" class="action-icon"><i class="fas fa-trash"></i></a>

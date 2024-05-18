@@ -39,9 +39,15 @@
       background-color: #DA0037;
       color: white;
       border-radius: 5px;
+<<<<<<< HEAD
       padding: 10px 15px;
       margin-bottom: 50px;
       border: 1px solid #DA0037;
+=======
+      border: none;
+      padding: 10px 15px;
+      margin-bottom: 50px;
+>>>>>>> origin/main
     }
 
     .buy_btnn:hover,
@@ -52,12 +58,24 @@
     }
 
     .buy_btnn {
+<<<<<<< HEAD
       left: 10px;
     }
 
     .addCart {
       position: relative;
       right: 20px;
+=======
+      position: absolute;
+      bottom: 20px;
+      left: 150px;
+    }
+
+    .addCart {
+      position: absolute;
+      bottom: 20px;
+      left: 10px;
+>>>>>>> origin/main
     }
 
     .productImage {
@@ -71,8 +89,12 @@
       font-size: 16px;
       text-align: justify;
       margin: 15px 20px 15px 0px;
+<<<<<<< HEAD
       width: 600px;
       font-weight: 500;
+=======
+      width: 500px;
+>>>>>>> origin/main
     }
 
     .product-text2 {
@@ -162,10 +184,23 @@
     <div class="Product-data">
       <div>
         <p class="product-text2">{{ product.Sari_Name }}</p>
+<<<<<<< HEAD
         <div class="product-text"><strong>{{ product.Description }}</strong></div>
         <div class="product-text">{{ product.LDescription }}</div>
         <p class="product-price" style="color:#DA0037">Rs. {{ product.Price }}</p>
         <div class="product-text"><strong>{{ product.Size }}</strong></div><br>
+=======
+        <div class="product-text">{{ product.Description }}</div>
+        <div class="product-text">{{ product.LDescription }}</div>
+        <p class="product-price">{{ product.Price }}</p>
+        <div class="product-text">{{ product.Size }}</div><br>
+
+        <div class="quantity">
+          <button class="minus">-</button>
+          <input type="text" class="quantity-input" value="1" readonly>
+          <button class="plus">+</button>
+        </div>
+>>>>>>> origin/main
 
         <a href="/addCart">
           <p class="addCart">Add to Cart</p>
@@ -218,7 +253,11 @@
 
         <p>
         <p style="font-size: 25px;">Payment Methods</p>
+<<<<<<< HEAD
         <img class="footer-icon3" src={% static "home/images/icons/khalti.png" %} />
+=======
+        <img class="footer-icon3" src={% static "home/images/icons/esewa.webp" %} />
+>>>>>>> origin/main
         </p>
         <p style="font-size: 25px;">Happy Shopping</p>
 
@@ -250,6 +289,28 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const addCartButtons = document.querySelectorAll('.addCart');
+<<<<<<< HEAD
+=======
+      const quantityInputs = document.querySelectorAll('.quantity-input');
+  
+      // Quantity buttons functionality
+      quantityInputs.forEach(input => {
+        const minusButton = input.parentElement.querySelector('.minus');
+        const plusButton = input.parentElement.querySelector('.plus');
+  
+        minusButton.addEventListener('click', function () {
+          const currentValue = parseInt(input.value);
+          if (currentValue > 1) {
+            input.value = currentValue - 1;
+          }
+        });
+  
+        plusButton.addEventListener('click', function () {
+          const currentValue = parseInt(input.value);
+          input.value = currentValue + 1;
+        });
+      });
+>>>>>>> origin/main
   
       // Add to cart functionality
       addCartButtons.forEach(button => {

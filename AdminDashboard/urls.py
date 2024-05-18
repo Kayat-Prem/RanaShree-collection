@@ -9,15 +9,23 @@ urlpatterns = [
     path("adminn/", views.Adminn, name ='adminn'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('logout/', views.logout, name='logout'),
+<<<<<<< HEAD
+=======
+    path('allorders/', views.Allorders, name='allorders'),
+>>>>>>> origin/main
     path('allproducts/', views.Allproducts, name='allproducts'),
     path('edit_product/<int:product_id>/', views.edit_product, name='edit_product'),
     path('delete_product/<int:product_id>/', views.delete_product, name='delete_product'),
     path('allusers/', views.Allusers, name='allusers'),
     path('delete_user/<int:user_id>/', views.delete_user, name='delete_user'),
+<<<<<<< HEAD
     path('allorders/', views.Allorders, name='allorders'),
     path('delete_order/<int:order_id>/', views.delete_order, name='delete_order'),
     path('transaction/', views.Transaction, name='transaction'),
     path('delete_transaction/<int:transaction_id>/', views.delete_transaction, name='delete_transaction'),
+=======
+    path('delete_order/<int:order_id>/', views.delete_order, name='delete_order'),
+>>>>>>> origin/main
     path('settings/', views.Settings, name='settings'),
     path('adminCart/', views.AdminCart, name='adminCart'),
 ] 

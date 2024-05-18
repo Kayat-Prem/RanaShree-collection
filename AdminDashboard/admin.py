@@ -1,7 +1,12 @@
 from django.contrib import admin
 from .models import productsModel
+<<<<<<< HEAD
 from .models import Cart, Order
 
+=======
+from .models import Cart
+from .models import Order
+>>>>>>> origin/main
 
 # Register your models here.
 class ProductsModelAdmin(admin.ModelAdmin):
@@ -23,7 +28,11 @@ class CartModelAdmin(admin.ModelAdmin):
 admin.site.register(Cart, CartModelAdmin)
 
 class OrderAdmin(admin.ModelAdmin):
+<<<<<<< HEAD
     list_display = ('id', 'sari_name', 'quantity', 'total_price', 'size', 'image', 'full_name', 'address', 'number', 'user')
+=======
+    list_display = ('id', 'sari_name', 'price', 'size', 'image', 'full_name', 'address', 'number', )
+>>>>>>> origin/main
     
 admin.site.register(Order, OrderAdmin)
 
@@ -32,3 +41,8 @@ admin.site.register(Order, OrderAdmin)
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/main

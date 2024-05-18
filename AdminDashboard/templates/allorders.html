@@ -14,9 +14,17 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link rel="stylesheet" href="{% static 'home/dashboard.css' %}" />
+<<<<<<< HEAD
   <link rel="stylesheet" href="{% static 'home/adminn.css' %}" />
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+=======
+
+  <link rel="stylesheet" href="{% static 'home/adminn.css' %}" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+>>>>>>> origin/main
 </head>
 
 <body>
@@ -32,10 +40,20 @@
 
   <header id="header">
     <nav class="navbar">
+<<<<<<< HEAD
       <div class="header-logo">
         <div class="admin-dash">
           <h1><img src="{% static 'home/images/icons/home.png' %}" class="home" alt="home" />Admin Dashboard</h1>
         </div>
+=======
+
+      <div class="header-logo">
+
+        <div class="admin-dash">
+          <h1><img src="{% static 'home/images/icons/home.png' %}" class="home" alt="home" />Admin Dashboard</h1>
+        </div>
+
+>>>>>>> origin/main
         <div class="search">
           <div class="icon"></div>
           <div class="input">
@@ -44,6 +62,10 @@
           </div>
           <span class="clear" onclick="clearSearch()"></span>
         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
         <div>
           <img id="cart_icon" src={% static "home/images/icons/basket.png" %} class="basket" alt="Cart" />
         </div>
@@ -52,6 +74,7 @@
             window.location.href = '/adminCart'
           }))
         </script>
+<<<<<<< HEAD
         <div>
           <img src={% static "home/images/icons/notification.png" %} class="notification" alt="Cart" />
         </div>
@@ -60,10 +83,27 @@
             <div class="profile-img" style="background-image: url('{% static "/home/images/people/per2.jpg" %}');">
               <i class="fa-solid fa-circle"></i>
             </div>
+=======
+
+        <div>
+          <img src={% static "home/images/icons/notification.png" %} class="notification" alt="Cart" />
+        </div>
+
+        <div class="profile-dropdown">
+          <div onclick="toggle()" class="profile-dropdown-btn">
+            <div class="profile-img" style="background-image: url('{% static " /home/images/people/per2.jpg" %}');">
+              <i class="fa-solid fa-circle"></i>
+            </div>
+
+>>>>>>> origin/main
             <span> Shree</span>
             <i class="fa-solid fa-angle-down"></i>
             </span>
           </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
           <ul class="profile-dropdown-list">
             <li class="profile-dropdown-list-item">
               <a href="#">
@@ -71,24 +111,40 @@
                 Edit Profile
               </a>
             </li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
             <li class="profile-dropdown-list-item">
               <a href="#">
                 <i class="fa-regular fa-envelope"></i>
                 Inbox
               </a>
             </li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
             <li class="profile-dropdown-list-item">
               <a href="#">
                 <i class="fa-solid fa-chart-line"></i>
                 Analytics
               </a>
             </li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
             <li class="profile-dropdown-list-item">
               <a href="#">
                 <i class="fa-solid fa-sliders"></i>
                 Settings
               </a>
             </li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
             <li class="profile-dropdown-list-item">
               <a href="#">
                 <i class="fa-regular fa-circle-question"></i>
@@ -96,6 +152,10 @@
               </a>
             </li>
             <hr />
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
             <li class="profile-dropdown-list-item">
               <a href="{% url 'index' %}">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -104,24 +164,45 @@
             </li>
           </ul>
         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
       </div>
     </nav>
   </header>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
   <input type="checkbox" id="check">
   <label for="check" id="check-label">
     <i class="fas fa-bars" id="check-btn"></i>
     <i class="fas fa-times" id="cancel"></i>
   </label>
 
+<<<<<<< HEAD
   <div class="sidebar">
     <a class="logo" href="">Ranashree.</a>
     <ul class="sidebar-nav">
+=======
+
+  <div class="sidebar">
+    <a class="logo" href="">Ranashree.</a>
+    <ul class="sidebar-nav">
+
+>>>>>>> origin/main
       <li><img src="{% static 'home/images/icons/dashboard.png' %}" class="side-icon" alt="dashboard" /><a
           href="{% url 'adminn' %}">Dashboard</a></li>
 
       <li><img src="{% static 'home/images/icons/group.png' %}" class="side-icon2" alt="users" /><a
+<<<<<<< HEAD
           href="{% url 'allusers' %}">Users</a></li>
+=======
+          href="{% url 'allusers' %}">Users</a>
+      </li>
+>>>>>>> origin/main
 
       <li><img src="{% static 'home/images/icons/product.png' %}" class="side-icon2" alt="product" /><a
           href="{% url 'allproducts' %}">Products</a></li>
@@ -132,18 +213,28 @@
       <li><img src="{% static 'home/images/icons/review.png' %}" class="side-icon2" alt="reviews" /><a
           href="{% url 'settings' %}">Reviews</a></li>
 
+<<<<<<< HEAD
           <li><img src="{% static 'home/images/icons/transaction.png' %}" class="side-icon2" alt="transactions" /><a
             href="{% url 'transaction' %}">Transactions</a></li>
             
       <li><img src="{% static 'home/images/icons/settings.png' %}" class="side-icon2" alt="setting" /><a
           href="{% url 'settings' %}">Settings</a></li>
           
+=======
+      <li><img src="{% static 'home/images/icons/transaction.png' %}" class="side-icon2" alt="transactions" /><a
+          href="{% url 'settings' %}">Transactions</a></li>
+
+      <li><img src="{% static 'home/images/icons/settings.png' %}" class="side-icon2" alt="setting" /><a
+          href="{% url 'settings' %}">Settings</a></li>
+
+>>>>>>> origin/main
       <br>
       <li><img src="{% static 'home/images/icons/logout.png' %}" class="side-icon2" alt="logout" /><a
           href="{% url 'index' %}">Log Out</a></li>
     </ul>
   </div>
 
+<<<<<<< HEAD
   <br><br><br><br><br><br><br><br>
   <div class="header_fixed">
     <button id="delete-all-btn" style="display: none;" onclick="deleteSelectedOrders()">Delete All Selected</button>
@@ -154,6 +245,17 @@
           <th>S.N.</th>
           <th>Sari Name</th>
           <th>Quantity</th>
+=======
+
+
+  <br><br><br><br><br><br><br><br>
+  <div class="header_fixed">
+    <table>
+      <thead>
+        <tr>
+          <th>S.N.</th>
+          <th>Sari Name</th>
+>>>>>>> origin/main
           <th>Size</th>
           <th>Price</th>
           <th>Images</th>
@@ -166,6 +268,7 @@
       <tbody>
         {% for order in orders %}
         <tr id="order_row_{{ order.id }}">
+<<<<<<< HEAD
           <td><input type="checkbox" class="order-checkbox" onclick="toggleDeleteAllBtn()" style="height: 20px; width: 20px;"></td>
           <td>{{ forloop.counter }}</td>
           <td>{{ order.sari_name }}</td>
@@ -173,10 +276,21 @@
           <td>{{ order.size }}</td>
           <td>{{ order.total_price }}</td>
           <td><img src="{{ order.image }}" alt="{{ order.sari_name }}" class="cart-image"></td>
+=======
+          <td>{{ forloop.counter }}</td>
+          <td> {{ order.sari_name }}</td>
+          <td>{{ order.size }}</td>
+          <td>{{ order.price }}</td>
+          <td><img src="{{ product.image.url }}" alt="{{ product.sari_name }}" class="cart-image"></td>
+>>>>>>> origin/main
           <td>{{ order.full_name }}</td>
           <td>{{ order.address }}</td>
           <td>{{ order.number }}</td>
           <td>
+<<<<<<< HEAD
+=======
+            <!-- <a href="#" onclick="editProduct('{{ order.id }}')" class="action-icon"><i class="fas fa-edit"></i></a> -->
+>>>>>>> origin/main
             <a href="#" onclick="deleteOrder('{{ order.id }}')" class="action-icon"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
@@ -185,6 +299,14 @@
     </table>
   </div>
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> origin/main
   <p class="copy">
     <center>
       Copyright &copy;
@@ -195,15 +317,22 @@
     </center>
   </p><br>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
   <script src={% static "AdminDashboard/script.js" %}></script>
 
 
   <script>
+<<<<<<< HEAD
     function toggleCheckboxes(source) {
       const checkboxes = document.querySelectorAll('.order-checkbox');
       checkboxes.forEach(checkbox => checkbox.checked = source.checked);
     }
 
+=======
+>>>>>>> origin/main
     function deleteOrder(orderId) {
       $.ajax({
         url: `/delete_order/${orderId}/`,

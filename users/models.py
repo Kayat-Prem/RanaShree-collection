@@ -2,7 +2,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 class CustomUser(AbstractUser):
     contact_number = models.CharField(max_length=10)
     full_name = models.CharField(max_length=20)
@@ -13,6 +16,9 @@ class CustomUser(AbstractUser):
     def _str_(self):
         return self.username
  
+<<<<<<< HEAD
 
 
     
+=======
+>>>>>>> origin/main
